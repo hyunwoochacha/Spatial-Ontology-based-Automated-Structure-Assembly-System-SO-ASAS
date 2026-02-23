@@ -1,0 +1,129 @@
+<UserControl x:Class="RevitBridge.UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:RevitBridge"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="800">
+
+    <!-- UserControl Resources -->
+    <UserControl.Resources>
+        <!-- Color Resources -->
+        <SolidColorBrush x:Key="BackgroundColor" Color="#FF2C2F33"/>
+        <SolidColorBrush x:Key="AccentColor" Color="#FFFFC107"/>
+        <SolidColorBrush x:Key="TextColor" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="CardBackgroundColor" Color="#FF23272A"/>
+        <SolidColorBrush x:Key="DisabledTextColor" Color="#FF888888"/>
+
+        <!-- Button Style -->
+        <Style TargetType="Button" x:Key="AccentButtonStyle">
+            <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- TextBlock Style -->
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+    </UserControl.Resources>
+    <!-- End UserControl Resources -->
+
+    <!-- Layout -->
+    <Grid Background="{StaticResource BackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Text="BRIDGE STRUCTURE" FontWeight="Bold" FontSize="24"
+                   HorizontalAlignment="Center" Margin="10" Grid.Row="0"/>
+
+        <!-- Content Area -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <!-- TreeView Area -->
+                <ColumnDefinition Width="2*"/>
+                <!-- Detail Area -->
+            </Grid.ColumnDefinitions>
+
+            <!-- TreeView Area -->
+            <Border Margin="10,168,10,10" BorderBrush="#FFCCCCCC" BorderThickness="1" CornerRadius="5" Grid.Column="0" Grid.ColumnSpan="2">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="329" VerticalAlignment="Bottom" Margin="0,0,9,0">
+                    <TreeView Name="MainTreeView" SelectedItemChanged="MainTreeView_SelectedItemChanged" Height="432" RenderTransformOrigin="0.5,0.5" Width="506">
+                        <TreeView.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-0.524"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-1.419"/>
+                            </TransformGroup>
+                        </TreeView.RenderTransform>
+                        <TreeViewItem Header="Bridge" IsExpanded="True" RenderTransformOrigin="0.5,0.5">
+                            <TreeViewItem.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform AngleX="-1.122"/>
+                                    <RotateTransform/>
+                                    <TranslateTransform X="1.41"/>
+                                </TransformGroup>
+                            </TreeViewItem.RenderTransform>
+                            <TreeViewItem Header="Rahmen Bridge" IsExpanded="True">
+                                <TreeViewItem Header="Structure Placement">
+                                    <TreeViewItem Header="Pier - Superstructure - Pier" Tag="Structure_Pier_Superstructure_Pier"/>
+                                    <TreeViewItem Header="Abutment - Superstructure - Abutment" Tag="Structure_Abutment_Superstructure_Abutment"/>
+                                    <TreeViewItem Header="Pier - Superstructure - Abutment" Tag="Structure_Pier_Superstructure_Abutment"/>
+                                    <TreeViewItem Header="Abutment - Superstructure - Pier" Tag="Structure_Abutment_Superstructure_Pier"/>
+                                </TreeViewItem>
+                                <TreeViewItem Header="Object Placement">
+                                    <TreeViewItem Header="Place Pier" Tag="Object_Pier"/>
+                                    <TreeViewItem Header="Place Abutment" Tag="Object_Abutment"/>
+                                    <TreeViewItem Header="Place Superstructure" Tag="Object_Superstructure"/>
+                                </TreeViewItem>
+                                <TreeViewItem Header="Combine All" Tag="CombineAll"/>
+                                <TreeViewItem Header="Cancel" Tag="Cancel"/>
+                            </TreeViewItem>
+                            <TreeViewItem Header="T-Girder Bridge (Planned)" Foreground="{StaticResource DisabledTextColor}"/>
+                            <TreeViewItem Header="Cable-Stayed Bridge (Planned)" Foreground="{StaticResource DisabledTextColor}"/>
+                            <TreeViewItem Header="Suspension Bridge (Planned)" Foreground="{StaticResource DisabledTextColor}"/>
+                        </TreeViewItem>
+                    </TreeView>
+                </ScrollViewer>
+            </Border>
+            <!-- End TreeView Area -->
+
+            <!-- Detail Area -->
+            <StackPanel Margin="103,10,103,10" Grid.ColumnSpan="2">
+                <TextBlock FontWeight="Bold" FontSize="18"><Run Text="                 "/><Run Text="BRIDGE ONTOLOGY"/></TextBlock>
+                <TextBlock Margin="0,10,0,20"><Run Text="Select a library ontology file (.ttl file)"/></TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <Label Content="TTL File:" VerticalAlignment="Center" Foreground="{StaticResource TextColor}"/>
+                    <TextBox x:Name="TtlFilePathTextBox" Width="200" Margin="5"/>
+                    <Button Content="Browse"
+                        Style="{StaticResource AccentButtonStyle}"
+                        Click="BrowseTtlFile_Click"/>
+                </StackPanel>
+                <Button Content="Get Started" Style="{StaticResource AccentButtonStyle}" Click="GetStartedButton_Click"/>
+            </StackPanel>
+            <!-- End Detail Area -->
+        </Grid>
+    </Grid>
+    <!-- End Layout -->
+</UserControl>
