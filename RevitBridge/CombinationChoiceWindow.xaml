@@ -1,0 +1,17 @@
+﻿<Window x:Class="RevitBridge.CombinationChoiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Combination Choice" Height="200" Width="300">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Please choose All Combine or Each element Combine." 
+                       Margin="10" 
+                       TextAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button Content="All" Width="100" Margin="5" Click="FullCombinationButton_Click"/>
+                <Button Content="Each Element" Width="100" Margin="5" Click="PartialCombinationButton_Click"/>
+            </StackPanel>
+            <Button Content="Cancel" Width="100" HorizontalAlignment="Center" Margin="5" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

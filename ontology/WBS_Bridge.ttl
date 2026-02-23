@@ -1,0 +1,521 @@
+@prefix ex: <http://example.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.w3.org/2002/07/owl#> .
+
+[ rdf:type owl:Ontology
+ ] .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.org/isAttachedTo
+ex:isAttachedTo rdf:type owl:ObjectProperty ;
+                rdfs:domain ex:WBS_Component ;
+                rdfs:range ex:WBS_Component .
+
+###  http://example.org/isAdjacentOf
+ex:isAdjacentOf rdf:type owl:ObjectProperty ;
+                rdfs:domain ex:WBS_Component ;
+                rdfs:range ex:WBS_Component .
+
+###  http://example.org/isPuttingOn
+ex:isPuttingOn rdf:type owl:ObjectProperty ;
+                rdfs:domain ex:WBS_Component ;
+                rdfs:range ex:WBS_Component .
+
+###  http://example.org/isPartOf
+ex:isPartOf rdf:type owl:ObjectProperty ;
+            rdfs:domain ex:WBS_Component ;
+            rdfs:range ex:WBS_Component .
+
+###  http://example.org/isBearingWith
+ex:isBearingWith rdf:type owl:ObjectProperty ;
+                 rdfs:domain ex:WBS_Component ;
+                 rdfs:range ex:WBS_Component .
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://example.org/width
+ex:width rdf:type owl:DatatypeProperty ;
+          rdfs:domain ex:WBS_Component ;
+          rdfs:range xsd:float .
+
+
+###  http://example.org/length
+ex:length rdf:type owl:DatatypeProperty ;
+          rdfs:domain ex:WBS_Component ;
+          rdfs:range xsd:float .
+
+###  http://example.org/height
+ex:height rdf:type owl:DatatypeProperty ;
+          rdfs:domain ex:WBS_Component ;
+          rdfs:range xsd:float .
+
+###  http://example.org/material
+ex:material rdf:type owl:DatatypeProperty ;
+            rdfs:domain ex:WBS_Component ;
+            rdfs:range xsd:string .
+
+###  http://example.org/name
+ex:name rdf:type owl:DatatypeProperty ;
+        rdfs:domain ex:WBS_Component ;
+        rdfs:range xsd:string .
+
+###  http://example.org/staLocation
+ex:staLocation rdf:type owl:DatatypeProperty ;
+               rdfs:domain ex:WBS_Component ;
+               rdfs:range xsd:string .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/WBS_Component
+ex:WBS_Component rdf:type owl:Class .
+
+
+###  http://example.org/Bridge
+ex:Bridge rdf:type owl:Class ;
+          rdfs:subClassOf ex:WBS_Component .
+
+
+###  http://example.org/SuperStructure
+ex:SuperStructure rdf:type owl:Class ;
+                  rdfs:subClassOf ex:Bridge .
+
+
+###  http://example.org/Slab
+ex:Slab rdf:type owl:Class ;
+        rdfs:subClassOf ex:SuperStructure .
+
+
+###  http://example.org/Protectivewall
+ex:Protectivewall rdf:type owl:Class ;
+            rdfs:subClassOf ex:SuperStructure .
+
+
+###  http://example.org/SubStructure
+ex:SubStructure rdf:type owl:Class ;
+                rdfs:subClassOf ex:Bridge .
+
+
+###  http://example.org/Abutment
+ex:Abutment rdf:type owl:Class ;
+            rdfs:subClassOf ex:SubStructure .
+
+
+###  http://example.org/AbutmentFooting
+ex:AbutmentFooting rdf:type owl:Class ;
+                   rdfs:subClassOf ex:Abutment .
+
+
+###  http://example.org/AbutmentFoundation
+ex:AbutmentFoundation rdf:type owl:Class ;
+                   rdfs:subClassOf ex:Abutment .
+
+
+###  http://example.org/AbutmentWall
+ex:AbutmentWall rdf:type owl:Class ;
+                rdfs:subClassOf ex:Abutment .
+
+
+###  http://example.org/AbutmentWingWall
+ex:AbutmentWingWall rdf:type owl:Class ;
+                    rdfs:subClassOf ex:Abutment .
+
+
+###  http://example.org/AbutmentCap
+ex:AbutmentCap rdf:type owl:Class ;
+               rdfs:subClassOf ex:Abutment .
+
+
+###  http://example.org/Pier
+ex:Pier rdf:type owl:Class ;
+        rdfs:subClassOf ex:SubStructure .
+
+
+###  http://example.org/PierColumn
+ex:PierColumn rdf:type owl:Class ;
+              rdfs:subClassOf ex:Pier .
+
+
+###  http://example.org/PierConcrete
+ex:PierConcrete rdf:type owl:Class ;
+                rdfs:subClassOf ex:Pier .
+
+
+###  http://example.org/PierCoping
+ex:PierCoping rdf:type owl:Class ;
+              rdfs:subClassOf ex:Pier .
+
+
+###  http://example.org/PierFooting
+ex:PierFooting rdf:type owl:Class ;
+               rdfs:subClassOf ex:Pier .
+
+
+###  http://example.org/PierFoundation
+ex:PierFoundation rdf:type owl:Class ;
+                  rdfs:subClassOf ex:Pier .
+
+
+#################################################################
+#    Individuals - Bridge
+#################################################################
+
+###  http://example.org/Bridge_Instance
+ex:Bridge_Instance rdf:type owl:NamedIndividual ,
+                            ex:Bridge .
+
+#################################################################
+#    Individuals - Pier A1
+#################################################################
+
+###  http://example.org/A1_PierCoping_Instance
+ex:A1_PierCoping_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierCoping ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:isAttachedTo ex:A1_PierColumn_Instance ;
+                       ex:isBearingWith ex:Slab_Instance ;
+                       ex:material "Steel" ;
+                       ex:name "A1_Pier_Coping" ;
+                       ex:staLocation "sta 0+200" .
+
+
+###  http://example.org/A1_PierColumn_Instance
+ex:A1_PierColumn_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierColumn ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:isAttachedTo ex:A1_PierFoundation_Instance ;
+                       ex:material "Concrete" ;
+                       ex:name "A1_Pier_Column" ;
+                       ex:staLocation "sta 0+200" .
+
+
+###  http://example.org/A1_PierFoundation_Instance
+ex:A1_PierFoundation_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierFoundation ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:isAttachedTo ex:A1_PierFooting_Instance ;
+                       ex:material "Concrete" ;
+                       ex:name "A1_Pier_Foundation" ;
+                       ex:staLocation "sta 0+200" .
+
+
+###  http://example.org/A1_PierFooting_Instance
+ex:A1_PierFooting_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierFooting ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:material "Concrete" ;
+                       ex:name "A1_Pier_Footing" ;
+                       ex:staLocation "sta 0+200" .
+
+
+#################################################################
+#    Individuals - Pier A2
+#################################################################
+
+###  http://example.org/A2_PierCoping_Instance
+ex:A2_PierCoping_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierCoping ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:isAttachedTo ex:A2_PierColumn_Instance ;
+                       ex:isBearingWith ex:Slab_Instance ;
+                       ex:material "Steel" ;
+                       ex:name "A2_Pier_Coping" ;
+                       ex:staLocation "sta 0+300" .
+
+
+###  http://example.org/A2_PierColumn_Instance
+ex:A2_PierColumn_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierColumn ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:isAttachedTo ex:A2_PierFoundation_Instance ;
+                       ex:material "Concrete" ;
+                       ex:name "A2_Pier_Column" ;
+                       ex:staLocation "sta 0+300" .
+
+
+###  http://example.org/A2_PierFoundation_Instance
+ex:A2_PierFoundation_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierFoundation ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:isAttachedTo ex:A2_PierFooting_Instance ;
+                       ex:material "Concrete" ;
+                       ex:name "A2_Pier_Foundation" ;
+                       ex:staLocation "sta 0+300" .
+
+
+###  http://example.org/A2_PierFooting_Instance
+ex:A2_PierFooting_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierFooting ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:material "Concrete" ;
+                       ex:name "A2_Pier_Footing" ;
+                       ex:staLocation "sta 0+300" .
+
+
+#################################################################
+#    Individuals - Pier A3
+#################################################################
+
+###  http://example.org/A3_PierCoping_Instance
+ex:A3_PierCoping_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierCoping ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:isAttachedTo ex:A3_PierColumn_Instance ;
+                       ex:isBearingWith ex:Slab_Instance ;
+                       ex:material "Steel" ;
+                       ex:name "A3_Pier_Coping" ;
+                       ex:staLocation "sta 0+400" .
+
+
+###  http://example.org/A3_PierColumn_Instance
+ex:A3_PierColumn_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierColumn ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:isAttachedTo ex:A3_PierFoundation_Instance ;
+                       ex:material "Concrete" ;
+                       ex:name "A3_Pier_Column" ;
+                       ex:staLocation "sta 0+400" .
+
+
+###  http://example.org/A3_PierFoundation_Instance
+ex:A3_PierFoundation_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierFoundation ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:isAttachedTo ex:A3_PierFooting_Instance ;
+                       ex:material "Concrete" ;
+                       ex:name "A3_Pier_Foundation" ;
+                       ex:staLocation "sta 0+400" .
+
+
+###  http://example.org/A3_PierFooting_Instance
+ex:A3_PierFooting_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierFooting ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:material "Concrete" ;
+                       ex:name "A3_Pier_Footing" ;
+                       ex:staLocation "sta 0+400" .
+
+
+#################################################################
+#    Individuals - Pier A5
+#################################################################
+
+###  http://example.org/A5_PierCoping_Instance
+ex:A5_PierCoping_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierCoping ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:isAttachedTo ex:A5_PierColumn_Instance ;
+                       ex:isBearingWith ex:Slab_Instance ;
+                       ex:material "Steel" ;
+                       ex:name "A5_Pier_Coping" ;
+                       ex:staLocation "sta 0+600" .
+
+
+###  http://example.org/A5_PierColumn_Instance
+ex:A5_PierColumn_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierColumn ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:isAttachedTo ex:A5_PierFoundation_Instance ;
+                       ex:material "Concrete" ;
+                       ex:name "A5_Pier_Column" ;
+                       ex:staLocation "sta 0+600" .
+
+
+###  http://example.org/A5_PierFoundation_Instance
+ex:A5_PierFoundation_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierFoundation ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:isAttachedTo ex:A5_PierFooting_Instance ;
+                       ex:material "Concrete" ;
+                       ex:name "A5_Pier_Foundation" ;
+                       ex:staLocation "sta 0+600" .
+
+
+###  http://example.org/A5_PierFooting_Instance
+ex:A5_PierFooting_Instance rdf:type owl:NamedIndividual ,
+                                ex:PierFooting ;
+                       ex:isPartOf ex:Bridge_Instance ;
+                       ex:material "Concrete" ;
+                       ex:name "A5_Pier_Footing" ;
+                       ex:staLocation "sta 0+600" .
+
+
+#################################################################
+#    Individuals - Abutment A1
+#################################################################
+
+###  http://example.org/A1_AbutmentFooting_Instance
+ex:A1_AbutmentFooting_Instance rdf:type owl:NamedIndividual ,
+                                      ex:AbutmentFooting ;
+                             ex:isPartOf ex:Bridge_Instance ;
+                             ex:material "Concrete" ;
+                             ex:name "A1_Abutment_Footing" ;
+                             ex:staLocation "sta 0" .
+
+
+###  http://example.org/A1_AbutmentFoundation_Instance
+ex:A1_AbutmentFoundation_Instance rdf:type owl:NamedIndividual ,
+                                         ex:AbutmentFoundation ;
+                                ex:isAttachedTo ex:A1_AbutmentFooting_Instance ;
+                                ex:isPartOf ex:Bridge_Instance ;
+                                ex:material "Concrete" ;
+                                ex:name "A1_Abutment_Foundation" ;
+                                ex:staLocation "sta 0" .
+
+
+###  http://example.org/A1_AbutmentWall_Instance
+ex:A1_AbutmentWall_Instance rdf:type owl:NamedIndividual ,
+                                  ex:AbutmentWall ;
+                         ex:isAttachedTo ex:A1_AbutmentFoundation_Instance ;
+                         ex:isPartOf ex:Bridge_Instance ;
+                         ex:isBearingWith ex:Slab_Instance ;
+                         ex:material "Concrete" ;
+                         ex:name "A1_Abutment_Wall" ;
+                         ex:staLocation "sta 0" .
+
+
+###  http://example.org/A1_AbutmentWingWall_Left_Instance
+ex:A1_AbutmentWingWall_Left_Instance rdf:type owl:NamedIndividual ,
+                                          ex:AbutmentWingWall ;
+                                  ex:isAdjacentOf ex:A1_AbutmentWall_Instance ;
+                                  ex:isAttachedTo ex:A1_AbutmentFoundation_Instance ;
+                                  ex:isPartOf ex:Bridge_Instance ;
+                                  ex:material "Concrete" ;
+                                  ex:name "A1_Abutment_WingWall_Left" ;
+                                  ex:staLocation "sta 0" .
+
+
+###  http://example.org/A1_AbutmentWingWall_Right_Instance
+ex:A1_AbutmentWingWall_Right_Instance rdf:type owl:NamedIndividual ,
+                                           ex:AbutmentWingWall ;
+                                   ex:isAdjacentOf ex:A1_AbutmentWall_Instance ;
+                                   ex:isAttachedTo ex:A1_AbutmentFoundation_Instance ;
+                                   ex:isPartOf ex:Bridge_Instance ;
+                                   ex:material "Concrete" ;
+                                   ex:name "A1_Abutment_WingWall_Right" ;
+                                   ex:staLocation "sta 0" .
+
+
+###  http://example.org/A1_AbutmentCap_Instance
+ex:A1_AbutmentCap_Instance rdf:type owl:NamedIndividual ,
+                                 ex:AbutmentCap ;
+                        ex:isAttachedTo ex:A1_AbutmentWall_Instance ;
+                        ex:isPartOf ex:Bridge_Instance ;
+                        ex:material "Concrete" ;
+                        ex:name "A1_Abutment_Cap" ;
+                        ex:staLocation "sta 0" .
+
+
+#################################################################
+#    Individuals - Abutment A2
+#################################################################
+
+###  http://example.org/A2_AbutmentFooting_Instance
+ex:A2_AbutmentFooting_Instance rdf:type owl:NamedIndividual ,
+                                      ex:AbutmentFooting ;
+                             ex:isPartOf ex:Bridge_Instance ;
+                             ex:material "Concrete" ;
+                             ex:name "A2_Abutment_Footing" ;
+                             ex:staLocation "sta 0+300" .
+
+
+###  http://example.org/A2_AbutmentFoundation_Instance
+ex:A2_AbutmentFoundation_Instance rdf:type owl:NamedIndividual ,
+                                         ex:AbutmentFoundation ;
+                                ex:isAttachedTo ex:A2_AbutmentFooting_Instance ;
+                                ex:isPartOf ex:Bridge_Instance ;
+                                ex:material "Concrete" ;
+                                ex:name "A2_Abutment_Foundation" ;
+                                ex:staLocation "sta 0+300" .
+
+
+###  http://example.org/A2_AbutmentWall_Instance
+ex:A2_AbutmentWall_Instance rdf:type owl:NamedIndividual ,
+                                  ex:AbutmentWall ;
+                         ex:isAttachedTo ex:A2_AbutmentFoundation_Instance ;
+                         ex:isPartOf ex:Bridge_Instance ;
+                         ex:isBearingWith ex:Slab_Instance ;
+                         ex:material "Concrete" ;
+                         ex:name "A2_Abutment_Wall" ;
+                         ex:staLocation "sta 0+300" .
+
+
+###  http://example.org/A2_AbutmentWingWall_Left_Instance
+ex:A2_AbutmentWingWall_Left_Instance rdf:type owl:NamedIndividual ,
+                                          ex:AbutmentWingWall ;
+                                  ex:isAdjacentOf ex:A2_AbutmentWall_Instance ;
+                                  ex:isAttachedTo ex:A2_AbutmentFoundation_Instance ;
+                                  ex:isPartOf ex:Bridge_Instance ;
+                                  ex:material "Concrete" ;
+                                  ex:name "A2_Abutment_WingWall_Left" ;
+                                  ex:staLocation "sta 0+300" .
+
+
+###  http://example.org/A2_AbutmentWingWall_Right_Instance
+ex:A2_AbutmentWingWall_Right_Instance rdf:type owl:NamedIndividual ,
+                                           ex:AbutmentWingWall ;
+                                   ex:isAdjacentOf ex:A2_AbutmentWall_Instance ;
+                                   ex:isAttachedTo ex:A2_AbutmentFoundation_Instance ;
+                                   ex:isPartOf ex:Bridge_Instance ;
+                                   ex:material "Concrete" ;
+                                   ex:name "A2_Abutment_WingWall_Right" ;
+                                   ex:staLocation "sta 0+300" .
+
+
+###  http://example.org/A2_AbutmentCap_Instance
+ex:A2_AbutmentCap_Instance rdf:type owl:NamedIndividual ,
+                                 ex:AbutmentCap ;
+                        ex:isAttachedTo ex:A2_AbutmentWall_Instance ;
+                        ex:isPartOf ex:Bridge_Instance ;
+                        ex:material "Concrete" ;
+                        ex:name "A2_Abutment_Cap" ;
+                        ex:staLocation "sta 0+300" .
+
+
+#################################################################
+#    Individuals - Superstructure
+#################################################################
+
+###  http://example.org/SuperStructure_Instance
+ex:SuperStructure_Instance rdf:type owl:NamedIndividual ,
+                                     ex:SuperStructure ;
+                            ex:isPartOf ex:Bridge_Instance ;
+                            ex:material "Concrete" ;
+                            ex:name "Main SuperStructure" ;
+                            ex:staLocation "sta 1+000" .
+
+###  http://example.org/Slab_Instance
+ex:Slab_Instance rdf:type owl:NamedIndividual ,
+                          ex:Slab ;
+                 ex:isPartOf ex:SuperStructure_Instance ;
+                 ex:material "Concrete" ;
+                 ex:name "Slab" ;
+                 ex:staLocation "sta 1+000" .
+
+###  http://example.org/Protectivewall_Left_Instance
+ex:Protectivewall_Left_Instance rdf:type owl:NamedIndividual ,
+                              ex:Protectivewall ;
+                     ex:isPartOf ex:SuperStructure_Instance ;
+                     ex:isPuttingOn ex:Slab_Instance ;
+                     ex:material "Concrete" ;
+                     ex:name "ProtectiveWall_Left" ;
+                     ex:staLocation "sta 1+000" .
+
+###  http://example.org/Protectivewall_Right_Instance
+ex:Protectivewall_Right_Instance rdf:type owl:NamedIndividual ,
+                              ex:Protectivewall ;
+                     ex:isPartOf ex:SuperStructure_Instance ;
+                     ex:isPuttingOn ex:Slab_Instance ;
+                     ex:material "Concrete" ;
+                     ex:name "ProtectiveWall_Right" ;
+                     ex:staLocation "sta 1+000" .

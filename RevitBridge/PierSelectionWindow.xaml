@@ -1,0 +1,17 @@
+<Window x:Class="RevitBridge.PierSelectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Pier Selection" Height="200" Width="300">
+    <StackPanel>
+        <TextBlock Text="Select a pier to combine." Margin="10" FontWeight="Bold"/>
+
+        <!-- ComboBox with dynamic pier list -->
+        <ComboBox x:Name="PierComboBox" Margin="10" Width="200"/>
+
+        <!-- OK and Cancel buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Content="OK" Click="Confirm_Click" Margin="5"/>
+            <Button Content="Cancel" Click="Cancel_Click" Margin="5"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

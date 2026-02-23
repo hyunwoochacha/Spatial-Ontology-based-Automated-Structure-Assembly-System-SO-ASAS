@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Text>Command RevitBridge</Text>
+    <Description>Some description for RevitBridge</Description>
+    <Assembly>C:\Users\chw42\source\repos\RevitBridge\RevitBridge\bin\Debug\RevitBridge.dll</Assembly>
+    <FullClassName>RevitBridgeAddin.BridgeController</FullClassName>
+    <ClientId>31f4bce5-cd4c-4637-8bab-7ec59a7b73e5</ClientId>
+    <VendorId>com.typepad.thebuildingcoder</VendorId>
+    <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+  </AddIn>
+  <AddIn Type="Application">
+    <Name>Application RevitBridge</Name>
+    <Assembly>C:\Users\chw42\source\repos\RevitBridge\RevitBridge\bin\Debug\RevitBridge.dll</Assembly>
+    <FullClassName>RevitBridgeAddin.App</FullClassName>
+    <ClientId>5fb66ffa-86a0-400a-8a12-ce247560a7dd</ClientId>
+    <VendorId>com.typepad.thebuildingcoder</VendorId>
+    <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+  </AddIn>
+</RevitAddIns>
