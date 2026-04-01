@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridge Spatial Ontology (BSO)</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #333; }
+        h1 { color: #1a5276; border-bottom: 2px solid #1a5276; padding-bottom: 10px; }
+        h2 { color: #2c3e50; margin-top: 30px; }
+        table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 10px 14px; text-align: left; }
+        th { background-color: #1a5276; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        code { background-color: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 0.95em; }
+        pre { background-color: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        a { color: #2980b9; }
+        .badge { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 3px; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+    <h1>Bridge Spatial Ontology (BSO)</h1>
+    <p>
+        <span class="badge">Version 1.0</span>
+        <span class="badge">OWL 2</span>
+        <span class="badge">Turtle (TTL)</span>
+    </p>
+    <p>
+        A spatial ontology for automated bridge BIM component assembly using WBS-based spatial relationships.
+        This ontology is developed as part of the research presented in:
+    </p>
+    <blockquote>
+        Cha, H. &amp; Moon, H. (2026). A Spatial Ontology-Based Framework for Automated Bridge BIM Component Assembly: Focus on Rigid-frame Bridges. <em>Automation in Construction</em> (under review).
+    </blockquote>
+
+    <h2>Namespace</h2>
+    <table>
+        <tr><th>Prefix</th><th>Namespace IRI</th><th>Description</th></tr>
+        <tr><td><code>bso:</code></td><td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#</code></td><td>Bridge Spatial Ontology (this ontology)</td></tr>
+        <tr><td><code>owl:</code></td><td><code>http://www.w3.org/2002/07/owl#</code></td><td>OWL Web Ontology Language</td></tr>
+        <tr><td><code>rdf:</code></td><td><code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code></td><td>Resource Description Framework</td></tr>
+        <tr><td><code>rdfs:</code></td><td><code>http://www.w3.org/2000/01/rdf-schema#</code></td><td>RDF Schema</td></tr>
+        <tr><td><code>xsd:</code></td><td><code>http://www.w3.org/2001/XMLSchema#</code></td><td>XML Schema Datatypes</td></tr>
+    </table>
+
+    <h2>Ontology Resources</h2>
+    <ul>
+        <li><a href="https://raw.githubusercontent.com/hyunwoochacha/Spatial-Ontology-based-Automated-Structure-Assembly-System-SO-ASAS/main/ontology/WBS_Bridge.ttl">Download Ontology (TTL)</a></li>
+        <li><a href="https://github.com/hyunwoochacha/Spatial-Ontology-based-Automated-Structure-Assembly-System-SO-ASAS">Source Code Repository</a></li>
+    </ul>
+
+    <h2>Classes</h2>
+    <table>
+        <tr><th>Class</th><th>Parent Class</th><th>Description</th></tr>
+        <tr><td><code>bso:WBS_Component</code></td><td>owl:Thing</td><td>Top-level abstract class for all bridge components</td></tr>
+        <tr><td><code>bso:Bridge</code></td><td>WBS_Component</td><td>Bridge facility</td></tr>
+        <tr><td><code>bso:SuperStructure</code></td><td>Bridge</td><td>Bridge superstructure</td></tr>
+        <tr><td><code>bso:Slab</code></td><td>SuperStructure</td><td>Bridge deck slab</td></tr>
+        <tr><td><code>bso:Protectivewall</code></td><td>SuperStructure</td><td>Protective wall / barrier</td></tr>
+        <tr><td><code>bso:SubStructure</code></td><td>Bridge</td><td>Bridge substructure</td></tr>
+        <tr><td><code>bso:Abutment</code></td><td>SubStructure</td><td>Abutment assembly</td></tr>
+        <tr><td><code>bso:AbutmentFooting</code></td><td>Abutment</td><td>Abutment footing</td></tr>
+        <tr><td><code>bso:AbutmentFoundation</code></td><td>Abutment</td><td>Abutment foundation</td></tr>
+        <tr><td><code>bso:AbutmentWall</code></td><td>Abutment</td><td>Abutment wall</td></tr>
+        <tr><td><code>bso:AbutmentWingWall</code></td><td>Abutment</td><td>Abutment wing wall</td></tr>
+        <tr><td><code>bso:Pier</code></td><td>SubStructure</td><td>Pier assembly</td></tr>
+        <tr><td><code>bso:PierFooting</code></td><td>Pier</td><td>Pier footing</td></tr>
+        <tr><td><code>bso:PierFoundation</code></td><td>Pier</td><td>Pier foundation</td></tr>
+        <tr><td><code>bso:PierColumn</code></td><td>Pier</td><td>Pier column</td></tr>
+        <tr><td><code>bso:PierCoping</code></td><td>Pier</td><td>Pier coping</td></tr>
+    </table>
+
+    <h2>Object Properties</h2>
+    <table>
+        <tr><th>Property</th><th>Domain</th><th>Range</th><th>Description</th></tr>
+        <tr><td><code>bso:isAttachedTo</code></td><td>WBS_Component</td><td>WBS_Component</td><td>Fixed vertical connection (fixed/semi-rigid boundary)</td></tr>
+        <tr><td><code>bso:isAdjacentOf</code></td><td>WBS_Component</td><td>WBS_Component</td><td>Horizontal adjacency with shear force transfer</td></tr>
+        <tr><td><code>bso:isPutOn</code></td><td>WBS_Component</td><td>WBS_Component</td><td>Gravity-based placement (hinged boundary)</td></tr>
+        <tr><td><code>bso:isBearingWith</code></td><td>WBS_Component</td><td>WBS_Component</td><td>Bearing-supported load transfer interface</td></tr>
+        <tr><td><code>bso:isPartOf</code></td><td>WBS_Component</td><td>WBS_Component</td><td>Part-whole hierarchical relationship</td></tr>
+    </table>
+
+    <h2>Data Properties</h2>
+    <table>
+        <tr><th>Property</th><th>Domain</th><th>Range</th><th>Description</th></tr>
+        <tr><td><code>bso:name</code></td><td>WBS_Component</td><td>xsd:string</td><td>Component identifier</td></tr>
+        <tr><td><code>bso:material</code></td><td>WBS_Component</td><td>xsd:string</td><td>Material type</td></tr>
+        <tr><td><code>bso:staLocation</code></td><td>WBS_Component</td><td>xsd:string</td><td>Station location</td></tr>
+        <tr><td><code>bso:length</code></td><td>WBS_Component</td><td>xsd:float</td><td>Length (m)</td></tr>
+        <tr><td><code>bso:width</code></td><td>WBS_Component</td><td>xsd:float</td><td>Width (m)</td></tr>
+        <tr><td><code>bso:height</code></td><td>WBS_Component</td><td>xsd:float</td><td>Height (m)</td></tr>
+    </table>
+
+    <h2>Example: Pier Vertical Assembly</h2>
+    <pre><code>PREFIX bso: &lt;https://hyunwoochacha.github.io/SO-ASAS/ontology#&gt;
+
+SELECT ?footingName ?foundationName ?columnName ?copingName
+WHERE {
+    bso:A1_PierFoundation_Instance bso:isAttachedTo bso:A1_PierFooting_Instance .
+    bso:A1_PierColumn_Instance     bso:isAttachedTo bso:A1_PierFoundation_Instance .
+    bso:A1_PierCoping_Instance     bso:isAttachedTo bso:A1_PierColumn_Instance .
+
+    bso:A1_PierFooting_Instance    bso:name ?footingName .
+    bso:A1_PierFoundation_Instance bso:name ?foundationName .
+    bso:A1_PierColumn_Instance     bso:name ?columnName .
+    bso:A1_PierCoping_Instance     bso:name ?copingName .
+}</code></pre>
+
+    <hr>
+    <p style="font-size: 0.9em; color: #777;">
+        &copy; 2026 Hyunwoo Cha &amp; Hyounseok Moon. University of Science and Technology (UST) / Korea Institute of Civil Engineering and Building Technology (KICT).
+    </p>
+</body>
+</html>
