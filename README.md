@@ -54,7 +54,7 @@ ex:WBS_Component
 |----------|-------------|---------|
 | `ex:isAttachedTo` | Structural connection between vertically stacked components | PierCoping → PierColumn |
 | `ex:isAdjacentOf` | Lateral adjacency relationship | WingWall → AbutmentWall |
-| `ex:isPuttingOn` | Component placed on top of another | ProtectiveWall → Slab |
+| `ex:isPutOn` | Component placed on top of another | ProtectiveWall → Slab |
 | `ex:isPartOf` | Part-whole composition | All components → Bridge |
 | `ex:isBearingWith` | Load-bearing support relationship | PierCoping → Slab |
 

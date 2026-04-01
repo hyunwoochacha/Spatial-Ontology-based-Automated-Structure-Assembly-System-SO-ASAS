@@ -114,18 +114,18 @@ namespace RevitBridgeAddin
                 // Execute SPARQL query based on _selectedPier and process results
                 string pierName = _selectedPier;
                 string query = $@"
-PREFIX ex: <http://example.org/>
+PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?copingName ?columnName ?foundationName ?footingName WHERE {{
-    ex:{pierName}_PierCoping_Instance ex:isAttachedTo ex:{pierName}_PierColumn_Instance .
-    ex:{pierName}_PierColumn_Instance ex:isAttachedTo ex:{pierName}_PierFoundation_Instance .
-    ex:{pierName}_PierFoundation_Instance ex:isAttachedTo ex:{pierName}_PierFooting_Instance .
-    ex:{pierName}_PierCoping_Instance ex:name ?copingName .
-    ex:{pierName}_PierColumn_Instance ex:name ?columnName .
-    ex:{pierName}_PierFoundation_Instance ex:name ?foundationName .
-    ex:{pierName}_PierFooting_Instance ex:name ?footingName .
+    bso:{pierName}_PierCoping_Instance bso:isAttachedTo bso:{pierName}_PierColumn_Instance .
+    bso:{pierName}_PierColumn_Instance bso:isAttachedTo bso:{pierName}_PierFoundation_Instance .
+    bso:{pierName}_PierFoundation_Instance bso:isAttachedTo bso:{pierName}_PierFooting_Instance .
+    bso:{pierName}_PierCoping_Instance bso:name ?copingName .
+    bso:{pierName}_PierColumn_Instance bso:name ?columnName .
+    bso:{pierName}_PierFoundation_Instance bso:name ?foundationName .
+    bso:{pierName}_PierFooting_Instance bso:name ?footingName .
 }}";
 
                 SparqlResultSet results = ExecutePierQuery(g, query, doc, pierName);
@@ -161,18 +161,18 @@ SELECT ?copingName ?columnName ?foundationName ?footingName WHERE {{
 
                 // Generate SPARQL query for each pier
                 string query = $@"
-PREFIX ex: <http://example.org/>
+PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?copingName ?columnName ?foundationName ?footingName WHERE {{
-    ex:{pierName}_PierCoping_Instance ex:isAttachedTo ex:{pierName}_PierColumn_Instance .
-    ex:{pierName}_PierColumn_Instance ex:isAttachedTo ex:{pierName}_PierFoundation_Instance .
-    ex:{pierName}_PierFoundation_Instance ex:isAttachedTo ex:{pierName}_PierFooting_Instance .
-    ex:{pierName}_PierCoping_Instance ex:name ?copingName .
-    ex:{pierName}_PierColumn_Instance ex:name ?columnName .
-    ex:{pierName}_PierFoundation_Instance ex:name ?foundationName .
-    ex:{pierName}_PierFooting_Instance ex:name ?footingName .
+    bso:{pierName}_PierCoping_Instance bso:isAttachedTo bso:{pierName}_PierColumn_Instance .
+    bso:{pierName}_PierColumn_Instance bso:isAttachedTo bso:{pierName}_PierFoundation_Instance .
+    bso:{pierName}_PierFoundation_Instance bso:isAttachedTo bso:{pierName}_PierFooting_Instance .
+    bso:{pierName}_PierCoping_Instance bso:name ?copingName .
+    bso:{pierName}_PierColumn_Instance bso:name ?columnName .
+    bso:{pierName}_PierFoundation_Instance bso:name ?foundationName .
+    bso:{pierName}_PierFooting_Instance bso:name ?footingName .
 }}";
 
                 // Execute SPARQL query
@@ -315,18 +315,18 @@ SELECT ?copingName ?columnName ?foundationName ?footingName WHERE {{
 
                 // Generate SPARQL query for each pier
                 string query = $@"
-PREFIX ex: <http://example.org/>
+PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?copingName ?columnName ?foundationName ?footingName WHERE {{
-    ex:{pierName}_PierCoping_Instance ex:isAttachedTo ex:{pierName}_PierColumn_Instance .
-    ex:{pierName}_PierColumn_Instance ex:isAttachedTo ex:{pierName}_PierFoundation_Instance .
-    ex:{pierName}_PierFoundation_Instance ex:isAttachedTo ex:{pierName}_PierFooting_Instance .
-    ex:{pierName}_PierCoping_Instance ex:name ?copingName .
-    ex:{pierName}_PierColumn_Instance ex:name ?columnName .
-    ex:{pierName}_PierFoundation_Instance ex:name ?foundationName .
-    ex:{pierName}_PierFooting_Instance ex:name ?footingName .
+    bso:{pierName}_PierCoping_Instance bso:isAttachedTo bso:{pierName}_PierColumn_Instance .
+    bso:{pierName}_PierColumn_Instance bso:isAttachedTo bso:{pierName}_PierFoundation_Instance .
+    bso:{pierName}_PierFoundation_Instance bso:isAttachedTo bso:{pierName}_PierFooting_Instance .
+    bso:{pierName}_PierCoping_Instance bso:name ?copingName .
+    bso:{pierName}_PierColumn_Instance bso:name ?columnName .
+    bso:{pierName}_PierFoundation_Instance bso:name ?foundationName .
+    bso:{pierName}_PierFooting_Instance bso:name ?footingName .
 }}";
 
                 // Execute SPARQL query and store results
@@ -793,26 +793,26 @@ SELECT ?copingName ?columnName ?foundationName ?footingName WHERE {{
         public void CombineAbutment(Document doc, Graph g, string abutmentId)
         {
             string query = abutmentId == "A1" ? @"
-    PREFIX ex: <http://example.org/>
+    PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
     SELECT ?footingName ?foundationName ?wallName ?wingLeftName ?wingRightName ?capName WHERE {
-        ex:A1_AbutmentFooting_Instance ex:name ?footingName .
-        ex:A1_AbutmentFoundation_Instance ex:name ?foundationName .
-        ex:A1_AbutmentWall_Instance ex:name ?wallName .
-        ex:A1_AbutmentWingWall_Left_Instance ex:name ?wingLeftName .
-        ex:A1_AbutmentWingWall_Right_Instance ex:name ?wingRightName .
+        bso:A1_AbutmentFooting_Instance bso:name ?footingName .
+        bso:A1_AbutmentFoundation_Instance bso:name ?foundationName .
+        bso:A1_AbutmentWall_Instance bso:name ?wallName .
+        bso:A1_AbutmentWingWall_Left_Instance bso:name ?wingLeftName .
+        bso:A1_AbutmentWingWall_Right_Instance bso:name ?wingRightName .
         OPTIONAL {
-         ex:A1_AbutmentCap_Instance ex:name ?capName .
+         bso:A1_AbutmentCap_Instance bso:name ?capName .
         }
     }" : @"
-    PREFIX ex: <http://example.org/>
+    PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
     SELECT ?footingName ?foundationName ?wallName ?wingLeftName ?wingRightName ?capName WHERE {
-        ex:A2_AbutmentFooting_Instance ex:name ?footingName .
-        ex:A2_AbutmentFoundation_Instance ex:name ?foundationName .
-        ex:A2_AbutmentWall_Instance ex:name ?wallName .
-        ex:A2_AbutmentWingWall_Left_Instance ex:name ?wingLeftName .
-        ex:A2_AbutmentWingWall_Right_Instance ex:name ?wingRightName .
+        bso:A2_AbutmentFooting_Instance bso:name ?footingName .
+        bso:A2_AbutmentFoundation_Instance bso:name ?foundationName .
+        bso:A2_AbutmentWall_Instance bso:name ?wallName .
+        bso:A2_AbutmentWingWall_Left_Instance bso:name ?wingLeftName .
+        bso:A2_AbutmentWingWall_Right_Instance bso:name ?wingRightName .
         OPTIONAL {
-         ex:A2_AbutmentCap_Instance ex:name ?capName .
+         bso:A2_AbutmentCap_Instance bso:name ?capName .
         }
     }";
 
@@ -1262,16 +1262,16 @@ SELECT ?copingName ?columnName ?foundationName ?footingName WHERE {{
         private SparqlResultSet ExecuteSuperStructureQuery(Graph g)
         {
             string query = @"
-            PREFIX ex: <http://example.org/>
+            PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
             SELECT ?slabName ?protectivewallLeftName ?protectivewallRightName WHERE {
-            ex:Protectivewall_Left_Instance ex:isPuttingOn ex:Slab_Instance .
-            ex:Protectivewall_Right_Instance ex:isPuttingOn ex:Slab_Instance .
-            ex:Slab_Instance ex:name ?slabName .
-            ex:Protectivewall_Left_Instance ex:name ?protectivewallLeftName .
-            ex:Protectivewall_Right_Instance ex:name ?protectivewallRightName .
+            bso:Protectivewall_Left_Instance bso:isPutOn bso:Slab_Instance .
+            bso:Protectivewall_Right_Instance bso:isPutOn bso:Slab_Instance .
+            bso:Slab_Instance bso:name ?slabName .
+            bso:Protectivewall_Left_Instance bso:name ?protectivewallLeftName .
+            bso:Protectivewall_Right_Instance bso:name ?protectivewallRightName .
             }";
 
             try
@@ -1703,44 +1703,44 @@ SELECT ?copingName ?columnName ?foundationName ?footingName WHERE {{
 
             // SPARQL query for A1 abutment
             string queryA1 = @"
-PREFIX ex: <http://example.org/>
+PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?footingName ?foundationName ?wallName ?wingLeftName ?wingRightName ?capName WHERE {
-    ex:A1_AbutmentFooting_Instance ex:name ?footingName .
-    ex:A1_AbutmentFoundation_Instance ex:name ?foundationName .
-    ex:A1_AbutmentWall_Instance ex:name ?wallName .
-    ex:A1_AbutmentWingWall_Left_Instance ex:name ?wingLeftName .
-    ex:A1_AbutmentWingWall_Right_Instance ex:name ?wingRightName .
-    ex:A1_AbutmentCap_Instance ex:name ?capName .
+    bso:A1_AbutmentFooting_Instance bso:name ?footingName .
+    bso:A1_AbutmentFoundation_Instance bso:name ?foundationName .
+    bso:A1_AbutmentWall_Instance bso:name ?wallName .
+    bso:A1_AbutmentWingWall_Left_Instance bso:name ?wingLeftName .
+    bso:A1_AbutmentWingWall_Right_Instance bso:name ?wingRightName .
+    bso:A1_AbutmentCap_Instance bso:name ?capName .
 }";
 
             // SPARQL query for A2 abutment
             string queryA2 = @"
-PREFIX ex: <http://example.org/>
+PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?footingName ?foundationName ?wallName ?wingLeftName ?wingRightName ?capName WHERE {
-    ex:A2_AbutmentFooting_Instance ex:name ?footingName .
-    ex:A2_AbutmentFoundation_Instance ex:name ?foundationName .
-    ex:A2_AbutmentWall_Instance ex:name ?wallName .
-    ex:A2_AbutmentWingWall_Left_Instance ex:name ?wingLeftName .
-    ex:A2_AbutmentWingWall_Right_Instance ex:name ?wingRightName .
-    ex:A2_AbutmentCap_Instance ex:name ?capName .
+    bso:A2_AbutmentFooting_Instance bso:name ?footingName .
+    bso:A2_AbutmentFoundation_Instance bso:name ?foundationName .
+    bso:A2_AbutmentWall_Instance bso:name ?wallName .
+    bso:A2_AbutmentWingWall_Left_Instance bso:name ?wingLeftName .
+    bso:A2_AbutmentWingWall_Right_Instance bso:name ?wingRightName .
+    bso:A2_AbutmentCap_Instance bso:name ?capName .
 }";
 
             // SPARQL query for superstructure
             string query = @"
-PREFIX ex: <http://example.org/>
+PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?slabName ?protectivewallLeftName ?protectivewallRightName WHERE {
-    ex:Slab_Instance ex:name ?slabName .
-    ex:Protectivewall_Left_Instance ex:name ?protectivewallLeftName .
-    ex:Protectivewall_Right_Instance ex:name ?protectivewallRightName .
+    bso:Slab_Instance bso:name ?slabName .
+    bso:Protectivewall_Left_Instance bso:name ?protectivewallLeftName .
+    bso:Protectivewall_Right_Instance bso:name ?protectivewallRightName .
 }";
 
             // Execute SPARQL query and process results (superstructure)
@@ -2455,42 +2455,42 @@ SELECT ?slabName ?protectivewallLeftName ?protectivewallRightName WHERE {
 
             // SPARQL query for A2 abutment
             string queryA2 = @"
-PREFIX ex: <http://example.org/>
+PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?footingName ?foundationName ?wallName ?wingLeftName ?wingRightName ?capName WHERE {
-    ex:A2_AbutmentFooting_Instance ex:name ?footingName .
-    ex:A2_AbutmentFoundation_Instance ex:name ?foundationName .
-    ex:A2_AbutmentWall_Instance ex:name ?wallName .
-    ex:A2_AbutmentWingWall_Left_Instance ex:name ?wingLeftName .
-    ex:A2_AbutmentWingWall_Right_Instance ex:name ?wingRightName .
-    ex:A2_AbutmentCap_Instance ex:name ?capName .
+    bso:A2_AbutmentFooting_Instance bso:name ?footingName .
+    bso:A2_AbutmentFoundation_Instance bso:name ?foundationName .
+    bso:A2_AbutmentWall_Instance bso:name ?wallName .
+    bso:A2_AbutmentWingWall_Left_Instance bso:name ?wingLeftName .
+    bso:A2_AbutmentWingWall_Right_Instance bso:name ?wingRightName .
+    bso:A2_AbutmentCap_Instance bso:name ?capName .
 }";
 
             // SPARQL query for superstructure
             string querySuperstructure = @"
-PREFIX ex: <http://example.org/>
+PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?slabName ?protectivewallLeftName ?protectivewallRightName WHERE {
-    ex:Slab_Instance ex:name ?slabName .
-    ex:Protectivewall_Left_Instance ex:name ?protectivewallLeftName .
-    ex:Protectivewall_Right_Instance ex:name ?protectivewallRightName .
+    bso:Slab_Instance bso:name ?slabName .
+    bso:Protectivewall_Left_Instance bso:name ?protectivewallLeftName .
+    bso:Protectivewall_Right_Instance bso:name ?protectivewallRightName .
 }";
 
             // SPARQL query for pier elements
             string queryPier = @"
-PREFIX ex: <http://example.org/>
+PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?footingName ?foundationName ?columnName ?copingName WHERE {
-    ex:A1_PierFooting_Instance ex:name ?footingName .
-    ex:A1_PierFoundation_Instance ex:name ?foundationName .
-    ex:A1_PierColumn_Instance ex:name ?columnName .
-    ex:A1_PierCoping_Instance ex:name ?copingName .
+    bso:A1_PierFooting_Instance bso:name ?footingName .
+    bso:A1_PierFoundation_Instance bso:name ?foundationName .
+    bso:A1_PierColumn_Instance bso:name ?columnName .
+    bso:A1_PierCoping_Instance bso:name ?copingName .
 }";
 
             // Execute SPARQL query and process results (A2)
@@ -3256,42 +3256,42 @@ SELECT ?footingName ?foundationName ?columnName ?copingName WHERE {
 
             // SPARQL query for A1 abutment
             string queryA1 = @"
-PREFIX ex: <http://example.org/>
+PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?footingName ?foundationName ?wallName ?wingLeftName ?wingRightName ?capName WHERE {
-    ex:A1_AbutmentFooting_Instance ex:name ?footingName .
-    ex:A1_AbutmentFoundation_Instance ex:name ?foundationName .
-    ex:A1_AbutmentWall_Instance ex:name ?wallName .
-    ex:A1_AbutmentWingWall_Left_Instance ex:name ?wingLeftName .
-    ex:A1_AbutmentWingWall_Right_Instance ex:name ?wingRightName .
-    ex:A1_AbutmentCap_Instance ex:name ?capName .
+    bso:A1_AbutmentFooting_Instance bso:name ?footingName .
+    bso:A1_AbutmentFoundation_Instance bso:name ?foundationName .
+    bso:A1_AbutmentWall_Instance bso:name ?wallName .
+    bso:A1_AbutmentWingWall_Left_Instance bso:name ?wingLeftName .
+    bso:A1_AbutmentWingWall_Right_Instance bso:name ?wingRightName .
+    bso:A1_AbutmentCap_Instance bso:name ?capName .
 }";
 
             // SPARQL query for superstructure
             string querySuperstructure = @"
-PREFIX ex: <http://example.org/>
+PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?slabName ?protectivewallLeftName ?protectivewallRightName WHERE {
-    ex:Slab_Instance ex:name ?slabName .
-    ex:Protectivewall_Left_Instance ex:name ?protectivewallLeftName .
-    ex:Protectivewall_Right_Instance ex:name ?protectivewallRightName .
+    bso:Slab_Instance bso:name ?slabName .
+    bso:Protectivewall_Left_Instance bso:name ?protectivewallLeftName .
+    bso:Protectivewall_Right_Instance bso:name ?protectivewallRightName .
 }";
 
             // SPARQL query for pier elements
             string queryPier = @"
-PREFIX ex: <http://example.org/>
+PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?footingName ?foundationName ?columnName ?copingName WHERE {
-    ex:A1_PierFooting_Instance ex:name ?footingName .
-    ex:A1_PierFoundation_Instance ex:name ?foundationName .
-    ex:A1_PierColumn_Instance ex:name ?columnName .
-    ex:A1_PierCoping_Instance ex:name ?copingName .
+    bso:A1_PierFooting_Instance bso:name ?footingName .
+    bso:A1_PierFoundation_Instance bso:name ?foundationName .
+    bso:A1_PierColumn_Instance bso:name ?columnName .
+    bso:A1_PierCoping_Instance bso:name ?copingName .
 }";
 
             // Execute SPARQL query and process results (A1)
@@ -4058,40 +4058,40 @@ SELECT ?footingName ?foundationName ?columnName ?copingName WHERE {
 
             // SPARQL query creation and execution
             string querySuperstructure = @"
-PREFIX ex: <http://example.org/>
+PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?slabName ?protectivewallLeftName ?protectivewallRightName WHERE {
-    ex:Slab_Instance ex:name ?slabName .
-    ex:Protectivewall_Left_Instance ex:name ?protectivewallLeftName .
-    ex:Protectivewall_Right_Instance ex:name ?protectivewallRightName .
+    bso:Slab_Instance bso:name ?slabName .
+    bso:Protectivewall_Left_Instance bso:name ?protectivewallLeftName .
+    bso:Protectivewall_Right_Instance bso:name ?protectivewallRightName .
 }";
 
             // A1 Pier query
             string queryPierA1 = @"
-PREFIX ex: <http://example.org/>
+PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?copingName ?columnName ?foundationName ?footingName WHERE {
-    ex:A1_PierCoping_Instance ex:name ?copingName .
-    ex:A1_PierColumn_Instance ex:name ?columnName .
-    ex:A1_PierFoundation_Instance ex:name ?foundationName .
-    ex:A1_PierFooting_Instance ex:name ?footingName .
+    bso:A1_PierCoping_Instance bso:name ?copingName .
+    bso:A1_PierColumn_Instance bso:name ?columnName .
+    bso:A1_PierFoundation_Instance bso:name ?foundationName .
+    bso:A1_PierFooting_Instance bso:name ?footingName .
 }";
 
             // A2 Pier query
             string queryPierA2 = @"
-PREFIX ex: <http://example.org/>
+PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?copingName ?columnName ?foundationName ?footingName WHERE {
-    ex:A2_PierCoping_Instance ex:name ?copingName .
-    ex:A2_PierColumn_Instance ex:name ?columnName .
-    ex:A2_PierFoundation_Instance ex:name ?foundationName .
-    ex:A2_PierFooting_Instance ex:name ?footingName .
+    bso:A2_PierCoping_Instance bso:name ?copingName .
+    bso:A2_PierColumn_Instance bso:name ?columnName .
+    bso:A2_PierFoundation_Instance bso:name ?foundationName .
+    bso:A2_PierFooting_Instance bso:name ?footingName .
 }";
             // Execute SPARQL query and process results (superstructure)
             SparqlResultSet resultsSuperstructure = (SparqlResultSet)g.ExecuteQuery(querySuperstructure);
