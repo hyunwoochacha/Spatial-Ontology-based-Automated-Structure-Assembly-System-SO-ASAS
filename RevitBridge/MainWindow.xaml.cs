@@ -266,29 +266,29 @@ namespace RevitBridge
             Graph g = new Graph();
             FileLoader.Load(g, ttlFilePath);
 
-            // SPARQL query to find all instances of ex:Pier and its subclasses
-            // Uses rdfs:subClassOf* to include all subclasses of ex:Pier
+            // SPARQL query to find all instances of bso:Pier and its subclasses
+            // Uses rdfs:subClassOf* to include all subclasses of bso:Pier
             string query = @"
-    PREFIX ex: <http://example.org/>
+    PREFIX bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
     SELECT DISTINCT ?instance WHERE {
       ?instance rdf:type ?pierClass .
-      ?pierClass rdfs:subClassOf* ex:Pier .
+      ?pierClass rdfs:subClassOf* bso:Pier .
     }";
 
             SparqlResultSet results = (SparqlResultSet)g.ExecuteQuery(query);
 
             // Parse URI to extract pier identifiers (A1, A2, A3...)
-            // Instance URI format: ex:A1_PierCoping_Instance, ex:A2_PierFooting_Instance, etc.
+            // Instance URI format: bso:A1_PierCoping_Instance, bso:A2_PierFooting_Instance, etc.
             // Using regex to extract the 'A{n}' portion
             System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(@"(A[0-9]+)_Pier");
 
             HashSet<string> uniquePiers = new HashSet<string>();
             foreach (SparqlResult result in results)
             {
-                string instanceUri = result["instance"].ToString(); // e.g., "http://example.org/A1_PierCoping_Instance"
+                string instanceUri = result["instance"].ToString(); // e.g., "https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_PierCoping_Instance"
                 var match = regex.Match(instanceUri);
                 if (match.Success)
                 {
