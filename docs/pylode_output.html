@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bridge Spatial Ontology (BSO)</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC40lEQVRYhe2UT0hUQRzHp6Iss1B3VZKIDbbdfW9mnoi4f3zzjkJQeOgS0SEIb1EWBGGlLLu460zQPQM1unUIIjA6rfpm6ZAhHjoIRVQUFUlEbG+euTsdXG1d3VL3bVD4g+9h+L35fT/8fvN7ADgY9aHY5fpIvK82HO9ysu66wxWOzbkjcekKx0a2ALYA/n2AGi3a6ArFezcidziecQygNhhrcUficjP6PwBqtGijKxy/thnVBePHywYoDsFhl53GV8SEcsTx4usCMLUewTVpc23BNvEzm6Neyf1+KcG2vwqwUjgrOJq2JmHftwmkVBRGTvncFodnbI7vChO/FRznCmHsNM7aHM9Yk7Df5iqsLMw9sMNOK2g+jS4IEz0UJv4iuJZb2RltWnB4UZqH6ioGAgAAGe5vtiZhtzDx7OoRadLmeM7m6IRjhnLMW2Vx1bA5GhAmnhIcz6/xNj4Ujsky8UspwfayjDPjsF2Y6L7N8Vzx/BfP+KPg6LbgSqd8DnfJW2CnbaLhfH5ephpqygJYvQU4Z3P82TLRsDDhUTnmrSq+Y3N0Mg+Xldy/zwEAnLMWZ3pHpNExmfLs/t0dOdVcbT0JeKxUwFP2VljjqiE47Jp53LTXNxhsUZjerTByXWX6VZWRs/4bIQ2ACv+UAomgDzLCISNZxAxZKMhIDjLy1JfsaK+I+eGBUBNk5E2x8RogX/PdcDZUqieWTSh5D6nOVKqfhoycUmlHFFIyu5RXqf7AcQDISCpv/tqbMBqK883RtmpISRoxQyJKPgGn3wNk5NEigDFa6hslqV/Kj+FdBQD0bshIDlKSLlVcoWQo36UhR80BAMB73lulMn0EMpJTqD6qJiOt3mho/8GbkT2BZNgDB/V+RI0fkOrT3kRIVQbaDizJm2hdNbINBxwk5xAj3yEjuV9rZ1iIkgxixkLBA83mz8uCjLwoGwAx0vOnFSy5mtR4VTaAQvVORMnwZgSpzkrV/QmdE2tKe46+MQAAAABJRU5ErkJggg==">
+    <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABhklEQVQ4jbWPzStEURjG3yQLirlGKUnKFO45Z+SjmXvnnmthQcpCoVhYmD/AwmJiI3OvZuZc2U3UlKU0/gAslMw9JgvhHxAr2fko7r0jHSsl+TgbTz2Lt5731/MASEiJW9ONml2QyX6rsGalmnT74v8BDf12hxJfpV8d1uwNKUBYszabdFv84L8B9X0rESVmmUup2fme0cVhJWaZHw4NWL1Sew
+EAfDe6H3Dy6Ll456WEJsRZS630MwCAOI20ei5OBpxse5zcBZw8eS4uPpfIuDiCainIg9umBCU0GZzgLZ9Hn31OgoATL+CkLDGB5H1OKj4nFd/FBxUXJ0UZNb4edw/6nLyJXaj5FeCVyPLNIVmYK8TG1IwWb16L1gEACAFV90ftoT8bdOX0EeyY99gxBXZMgRz6qGb1KantAACI0UvE6F5XJqEjpsdURouI0Vt5gGOUkUNnPu7ObGIIMfNaGqDmjDRi9FZldF1lRgYzeqUyeoiY4ag5Iy3RgOYRM8+/M2bG8efsO4hGrpmJseyMAAAAAElFTkSuQmCC">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+    <style>
+        #pylode {
+            position: fixed;
+            top: 130px;
+            left: -60px;
+            font-size: small;
+            transform: rotate(-90deg);
+            color: grey;
+        }
+        #pylode a {
+            font-size: 2em;
+            font-weight: bold;
+            text-decoration: none;
+            color: #005A9C;
+        }
+        #pylode a:hover {
+            color: #333;
+        }
+
+        .cardinality {
+            font-style: italic;
+            color: #aa00aa;
+        }
+
+        dt {
+            font-weight: bold;
+            padding: 5px 0 5px 0;
+        }
+
+        ul.hlist {
+            list-style-type: none;
+            border: 1px solid navy;
+            padding:5px;
+            background-color: #F4FFFF;
+        }
+
+        ul.hierarchy {
+            border: 1px solid navy;
+            padding: 5px 25px 5px 25px;
+            background-color: #F4FFFF;
+        }
+
+
+        ul.hlist li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        .entity {
+            border: 1px solid navy;
+            margin:5px 0 5px 0;
+            padding: 5px;
+        }
+
+        .entity th {
+            width: 150px;
+            vertical-align: top;
+        }
+
+        .entity th,
+        .entity td {
+            padding-bottom: 20px;
+        }
+
+        .entity table th {
+            text-align: left;
+        }
+
+        section#overview img {
+            max-width: 1000px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            text-align: left
+        }
+        h1, h2, h3 {
+            color: #005A9C; background: white
+        }
+        h1 {
+            font: 170% sans-serif;
+            line-height: 110%;
+        }
+        h2 {
+            font: 140% sans-serif;
+            margin-top:40px;
+        }
+        h3 {
+            font: 120% sans-serif;
+            margin-top: 3px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid navy;
+        }
+        h4 { font: bold 100% sans-serif }
+        h5 { font: italic 100% sans-serif }
+        h6 { font: small-caps 100% sans-serif }
+
+
+        body {
+            padding: 2em 70px 2em 70px;
+            margin: 0;
+            font-family: sans-serif;
+            color: black;
+            background: white;
+            background-position: top left;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            text-align: justify;
+        }
+
+        section {
+            max-width: 1500px;
+        }
+
+        .figure {
+            margin-bottom: 20px;
+        }
+
+        :link { color: #00C; background: transparent }
+        :visited { color: #609; background: transparent }
+        a:active { color: #C00; background: transparent }
+
+        .sup-c,
+        .sup-op,
+        .sup-fp,
+        .sup-dp,
+        .sup-ap,
+        .sup-p,
+        .sup-ni,
+        .sup-con,
+        .sup-col {
+            cursor:help;
+            margin-left: 3px;
+        }
+
+        .sup-c {
+            color:orange;
+        }
+
+        .sup-op {
+            color:navy;
+        }
+
+        .sup-fp {
+            color:lightskyblue;
+        }
+
+        .sup-dp {
+            color:green;
+        }
+
+        .sup-ap {
+            color:darkred;
+        }
+
+        .sup-p {
+            color:black;
+        }
+
+        .sup-ni {
+            color:brown;
+        }
+
+        .sup-con {
+            color:orange;
+        }
+
+        .sup-col {
+            color:darkred;
+        }
+
+        code {
+            font-size: large;
+            color: darkred;
+        }
+
+        /* less prominent links for properties */
+        .proplink {
+            color: #336;
+            text-decoration: none;
+        }
+    </style>
+    
+    <script type="application/ld+json">
+      [
+  {
+    "@id": "https://hyunwoochacha.github.io/SO-ASAS/ontology",
+    "@type": [
+      "https://schema.org/DefinedTermSet"
+    ],
+    "https://schema.org/description": [
+      {
+        "@value": "<p>A spatial ontology for automated bridge BIM component assembly using WBS-based spatial relationships.</p>"
+      }
+    ],
+    "https://schema.org/name": [
+      {
+        "@value": "Bridge Spatial Ontology (BSO)"
+      }
+    ]
+  }
+]
+    </script>
+</head>
+<body>
+  <div id="pylode">made by <a href="http://github.com/rdflib/pyLODE">
+    <span style="color:#329545;">p</span><span style="color:#f9cb33;">y</span>LODE</a>
+    <span style="font-size:smaller;">2.13.2</span>
+  </div>
+  <h1>Bridge Spatial Ontology (BSO)</h1>
+<section id="metadata">
+    <h2 style="display:none;">Metadata</h2>
+    <dl>
+        <dt>URI</dt>
+        <dd><code>https://hyunwoochacha.github.io/SO-ASAS/ontology</code></dd>
+        <dt>Version Information</dt>
+        <dd>1.0</dd>
+        <dt>Ontology RDF</dt>
+        <dd><a href="WBS_Bridge.ttl">RDF (turtle)</a></dd>
+    </dl>
+    <h2>Description</h2>
+    <div id="description">
+        <p>A spatial ontology for automated bridge BIM component assembly using WBS-based spatial relationships.</p>
+    </div>
+</section>
+<section id="toc">
+    <h2>Table of Contents</h2>
+    <ol>
+        <li><a href="#classes">Classes</a></li>
+        <li><a href="#objectproperties">Object Properties</a></li>
+        <li><a href="#datatypeproperties">Datatype Properties</a></li>
+        <li><a href="#namedindividuals">Named Individuals</a></li>
+        <li><a href="#namespaces">Namespaces</a></li>
+        <li><a href="#legend">Legend</a></li>
+    </ol>
+</section>
+<section id="overview">
+    <h2>Overview</h2>
+    <div class="figure">
+        <div style="width:500px; height:50px; background-color: lightgrey; border:solid 2px grey; padding:10px;margin-bottom:5px; text-align:center;">Pictures say 1,000 words</div>
+        <div class="caption"><strong>Figure 1:</strong> Ontology overview</div>
+    </div>
+</section>
+  <section id="classes">
+    <h2>Classes <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+      <li><a href="#Abutment">Abutment</a></li>
+      <li><a href="#AbutmentFooting">AbutmentFooting</a></li>
+      <li><a href="#AbutmentFoundation">AbutmentFoundation</a></li>
+      <li><a href="#AbutmentWall">AbutmentWall</a></li>
+      <li><a href="#AbutmentWingWall">AbutmentWingWall</a></li>
+      <li><a href="#Bridge">Bridge</a></li>
+      <li><a href="#Pier">Pier</a></li>
+      <li><a href="#PierColumn">PierColumn</a></li>
+      <li><a href="#PierCoping">PierCoping</a></li>
+      <li><a href="#PierFooting">PierFooting</a></li>
+      <li><a href="#PierFoundation">PierFoundation</a></li>
+      <li><a href="#Protectivewall">Protectivewall</a></li>
+      <li><a href="#Slab">Slab</a></li>
+      <li><a href="#SubStructure">SubStructure</a></li>
+      <li><a href="#SuperStructure">SuperStructure</a></li>
+      <li><a href="#WBS_Component">WBS_Component</a></li>
+    </ul>
+    <div class="entity class" id="Abutment">
+        <h3>
+          Abutment<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Abutment" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#Abutment</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#SubStructure">SubStructure</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#AbutmentFooting">AbutmentFooting</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#AbutmentWingWall">AbutmentWingWall</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#AbutmentWall">AbutmentWall</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#AbutmentFoundation">AbutmentFoundation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_Abutment_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_Abutment_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_Abutment_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_Abutment_Instance</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="AbutmentFooting">
+        <h3>
+          AbutmentFooting<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#AbutmentFooting" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentFooting</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Abutment">Abutment</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_AbutmentFooting_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_AbutmentFooting_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_AbutmentFooting_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_AbutmentFooting_Instance</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="AbutmentFoundation">
+        <h3>
+          AbutmentFoundation<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#AbutmentFoundation" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentFoundation</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Abutment">Abutment</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_AbutmentFoundation_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_AbutmentFoundation_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_AbutmentFoundation_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_AbutmentFoundation_Instance</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="AbutmentWall">
+        <h3>
+          AbutmentWall<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#AbutmentWall" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWall</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Abutment">Abutment</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_AbutmentWall_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_AbutmentWall_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_AbutmentWall_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_AbutmentWall_Instance</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="AbutmentWingWall">
+        <h3>
+          AbutmentWingWall<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#AbutmentWingWall" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWingWall</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Abutment">Abutment</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_AbutmentWingWall_Right_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_AbutmentWingWall_Right_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_AbutmentWingWall_Left_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_AbutmentWingWall_Left_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_AbutmentWingWall_Right_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_AbutmentWingWall_Right_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_AbutmentWingWall_Left_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_AbutmentWingWall_Left_Instance</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Bridge">
+        <h3>
+          Bridge<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Bridge" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#Bridge</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#WBS_Component">WBS_Component</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#SuperStructure">SuperStructure</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#SubStructure">SubStructure</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Bridge_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#Bridge_Instance</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Pier">
+        <h3>
+          Pier<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Pier" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#SubStructure">SubStructure</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#PierFoundation">PierFoundation</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#PierColumn">PierColumn</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#PierFooting">PierFooting</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#PierCoping">PierCoping</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A4_Pier_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A4_Pier_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A5_Pier_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A5_Pier_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_Pier_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_Pier_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A7_Pier_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A7_Pier_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A6_Pier_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A6_Pier_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_Pier_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_Pier_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A3_Pier_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A3_Pier_Instance</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="PierColumn">
+        <h3>
+          PierColumn<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#PierColumn" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Pier">Pier</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_PierColumn_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_PierColumn_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_PierColumn_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_PierColumn_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A6_PierColumn_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A6_PierColumn_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A4_PierColumn_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A4_PierColumn_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A3_PierColumn_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A3_PierColumn_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A5_PierColumn_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A5_PierColumn_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A7_PierColumn_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A7_PierColumn_Instance</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="PierCoping">
+        <h3>
+          PierCoping<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#PierCoping" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Pier">Pier</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A7_PierCoping_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A7_PierCoping_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A3_PierCoping_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A3_PierCoping_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_PierCoping_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_PierCoping_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A5_PierCoping_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A5_PierCoping_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_PierCoping_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_PierCoping_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A6_PierCoping_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A6_PierCoping_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A4_PierCoping_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A4_PierCoping_Instance</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="PierFooting">
+        <h3>
+          PierFooting<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#PierFooting" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Pier">Pier</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A4_PierFooting_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A4_PierFooting_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A5_PierFooting_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A5_PierFooting_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A7_PierFooting_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A7_PierFooting_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_PierFooting_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_PierFooting_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A3_PierFooting_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A3_PierFooting_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A6_PierFooting_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A6_PierFooting_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_PierFooting_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_PierFooting_Instance</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="PierFoundation">
+        <h3>
+          PierFoundation<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#PierFoundation" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Pier">Pier</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A7_PierFoundation_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A7_PierFoundation_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_PierFoundation_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_PierFoundation_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_PierFoundation_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_PierFoundation_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A5_PierFoundation_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A5_PierFoundation_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A4_PierFoundation_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A4_PierFoundation_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A6_PierFoundation_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A6_PierFoundation_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#A3_PierFoundation_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#A3_PierFoundation_Instance</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Protectivewall">
+        <h3>
+          Protectivewall<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Protectivewall" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#Protectivewall</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#SuperStructure">SuperStructure</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Protectivewall_Left_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#Protectivewall_Left_Instance</a><br/>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Protectivewall_Right_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#Protectivewall_Right_Instance</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Slab">
+        <h3>
+          Slab<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Slab" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#Slab</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#SuperStructure">SuperStructure</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Slab_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#Slab_Instance</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="SubStructure">
+        <h3>
+          SubStructure<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#SubStructure" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#SubStructure</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Bridge">Bridge</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#Abutment">Abutment</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Pier">Pier</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#SubStructure_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#SubStructure_Instance</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="SuperStructure">
+        <h3>
+          SuperStructure<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#SuperStructure" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#SuperStructure</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Bridge">Bridge</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#Protectivewall">Protectivewall</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Slab">Slab</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#SuperStructure_Instance">https://hyunwoochacha.github.io/SO-ASAS/ontology#SuperStructure_Instance</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="WBS_Component">
+        <h3>
+          WBS_Component<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#WBS_Component" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#WBS_Component</code></td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#Bridge">Bridge</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="#height">height</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="#isBearingWith">isBearingWith</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="#staLocation">staLocation</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="#isAttachedTo">isAttachedTo</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="#name">name</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="#isPartOf">isPartOf</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="#isAdjacentOf">isAdjacentOf</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="#length">length</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="#material">material</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="#width">width</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="#isPutOn">isPutOn</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="#isBearingWith">isBearingWith</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="#isAttachedTo">isAttachedTo</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="#isAdjacentOf">isAdjacentOf</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="#isPartOf">isPartOf</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="#isPutOn">isPutOn</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+<section id="objectproperties">
+    <h2>Object Properties <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#isAdjacentOf">isAdjacentOf</a></li>
+        <li><a href="#isAttachedTo">isAttachedTo</a></li>
+        <li><a href="#isBearingWith">isBearingWith</a></li>
+        <li><a href="#isPartOf">isPartOf</a></li>
+        <li><a href="#isPutOn">isPutOn</a></li>
+    </ul>
+    <div class="entity property" id="isAdjacentOf">
+        <h3>isAdjacentOf<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#isAdjacentOf" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#isAdjacentOf</code></td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#WBS_Component">WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#WBS_Component">https://hyunwoochacha.github.io/SO-ASAS/ontology#WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="isAttachedTo">
+        <h3>isAttachedTo<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#isAttachedTo" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#isAttachedTo</code></td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#WBS_Component">WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#WBS_Component">https://hyunwoochacha.github.io/SO-ASAS/ontology#WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="isBearingWith">
+        <h3>isBearingWith<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#isBearingWith" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#isBearingWith</code></td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#WBS_Component">WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#WBS_Component">https://hyunwoochacha.github.io/SO-ASAS/ontology#WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="isPartOf">
+        <h3>isPartOf<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#isPartOf" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#isPartOf</code></td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#WBS_Component">WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#WBS_Component">https://hyunwoochacha.github.io/SO-ASAS/ontology#WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="isPutOn">
+        <h3>isPutOn<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#isPutOn" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#isPutOn</code></td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#WBS_Component">WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#WBS_Component">https://hyunwoochacha.github.io/SO-ASAS/ontology#WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<section id="datatypeproperties">
+    <h2>Datatype Properties <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#height">height</a></li>
+        <li><a href="#length">length</a></li>
+        <li><a href="#material">material</a></li>
+        <li><a href="#name">name</a></li>
+        <li><a href="#staLocation">staLocation</a></li>
+        <li><a href="#width">width</a></li>
+    </ul>
+    <div class="entity property" id="height">
+        <h3>height<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#height" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#height</code></td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#WBS_Component">WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#float">xsd:float</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="length">
+        <h3>length<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#length" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#length</code></td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#WBS_Component">WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#float">xsd:float</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="material">
+        <h3>material<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#material" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#material</code></td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#WBS_Component">WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="name">
+        <h3>name<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#name" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#name</code></td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#WBS_Component">WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="staLocation">
+        <h3>staLocation<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#staLocation" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#staLocation</code></td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#WBS_Component">WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="width">
+        <h3>width<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#width" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://hyunwoochacha.github.io/SO-ASAS/ontology#width</code></td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#WBS_Component">WBS_Component</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#float">xsd:float</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+  
+    <section id="namedindividuals">
+        <h2>Named Individuals <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+        <ul class="hlist">
+            <li><a href="#A1_AbutmentFooting_Instance">A1_AbutmentFooting_Instance</a></li>
+            <li><a href="#A1_AbutmentFoundation_Instance">A1_AbutmentFoundation_Instance</a></li>
+            <li><a href="#A1_AbutmentWall_Instance">A1_AbutmentWall_Instance</a></li>
+            <li><a href="#A1_AbutmentWingWall_Left_Instance">A1_AbutmentWingWall_Left_Instance</a></li>
+            <li><a href="#A1_AbutmentWingWall_Right_Instance">A1_AbutmentWingWall_Right_Instance</a></li>
+            <li><a href="#A1_Abutment_Instance">A1_Abutment_Instance</a></li>
+            <li><a href="#A1_PierColumn_Instance">A1_PierColumn_Instance</a></li>
+            <li><a href="#A1_PierCoping_Instance">A1_PierCoping_Instance</a></li>
+            <li><a href="#A1_PierFooting_Instance">A1_PierFooting_Instance</a></li>
+            <li><a href="#A1_PierFoundation_Instance">A1_PierFoundation_Instance</a></li>
+            <li><a href="#A1_Pier_Instance">A1_Pier_Instance</a></li>
+            <li><a href="#A2_AbutmentFooting_Instance">A2_AbutmentFooting_Instance</a></li>
+            <li><a href="#A2_AbutmentFoundation_Instance">A2_AbutmentFoundation_Instance</a></li>
+            <li><a href="#A2_AbutmentWall_Instance">A2_AbutmentWall_Instance</a></li>
+            <li><a href="#A2_AbutmentWingWall_Left_Instance">A2_AbutmentWingWall_Left_Instance</a></li>
+            <li><a href="#A2_AbutmentWingWall_Right_Instance">A2_AbutmentWingWall_Right_Instance</a></li>
+            <li><a href="#A2_Abutment_Instance">A2_Abutment_Instance</a></li>
+            <li><a href="#A2_PierColumn_Instance">A2_PierColumn_Instance</a></li>
+            <li><a href="#A2_PierCoping_Instance">A2_PierCoping_Instance</a></li>
+            <li><a href="#A2_PierFooting_Instance">A2_PierFooting_Instance</a></li>
+            <li><a href="#A2_PierFoundation_Instance">A2_PierFoundation_Instance</a></li>
+            <li><a href="#A2_Pier_Instance">A2_Pier_Instance</a></li>
+            <li><a href="#A3_PierColumn_Instance">A3_PierColumn_Instance</a></li>
+            <li><a href="#A3_PierCoping_Instance">A3_PierCoping_Instance</a></li>
+            <li><a href="#A3_PierFooting_Instance">A3_PierFooting_Instance</a></li>
+            <li><a href="#A3_PierFoundation_Instance">A3_PierFoundation_Instance</a></li>
+            <li><a href="#A3_Pier_Instance">A3_Pier_Instance</a></li>
+            <li><a href="#A4_PierColumn_Instance">A4_PierColumn_Instance</a></li>
+            <li><a href="#A4_PierCoping_Instance">A4_PierCoping_Instance</a></li>
+            <li><a href="#A4_PierFooting_Instance">A4_PierFooting_Instance</a></li>
+            <li><a href="#A4_PierFoundation_Instance">A4_PierFoundation_Instance</a></li>
+            <li><a href="#A4_Pier_Instance">A4_Pier_Instance</a></li>
+            <li><a href="#A5_PierColumn_Instance">A5_PierColumn_Instance</a></li>
+            <li><a href="#A5_PierCoping_Instance">A5_PierCoping_Instance</a></li>
+            <li><a href="#A5_PierFooting_Instance">A5_PierFooting_Instance</a></li>
+            <li><a href="#A5_PierFoundation_Instance">A5_PierFoundation_Instance</a></li>
+            <li><a href="#A5_Pier_Instance">A5_Pier_Instance</a></li>
+            <li><a href="#A6_PierColumn_Instance">A6_PierColumn_Instance</a></li>
+            <li><a href="#A6_PierCoping_Instance">A6_PierCoping_Instance</a></li>
+            <li><a href="#A6_PierFooting_Instance">A6_PierFooting_Instance</a></li>
+            <li><a href="#A6_PierFoundation_Instance">A6_PierFoundation_Instance</a></li>
+            <li><a href="#A6_Pier_Instance">A6_Pier_Instance</a></li>
+            <li><a href="#A7_PierColumn_Instance">A7_PierColumn_Instance</a></li>
+            <li><a href="#A7_PierCoping_Instance">A7_PierCoping_Instance</a></li>
+            <li><a href="#A7_PierFooting_Instance">A7_PierFooting_Instance</a></li>
+            <li><a href="#A7_PierFoundation_Instance">A7_PierFoundation_Instance</a></li>
+            <li><a href="#A7_Pier_Instance">A7_Pier_Instance</a></li>
+            <li><a href="#Bridge_Instance">Bridge_Instance</a></li>
+            <li><a href="#Protectivewall_Left_Instance">Protectivewall_Left_Instance</a></li>
+            <li><a href="#Protectivewall_Right_Instance">Protectivewall_Right_Instance</a></li>
+            <li><a href="#Slab_Instance">Slab_Instance</a></li>
+            <li><a href="#SubStructure_Instance">SubStructure_Instance</a></li>
+            <li><a href="#SuperStructure_Instance">SuperStructure_Instance</a></li>
+        </ul>
+            <div class="entity named_individual" id="A1_AbutmentFooting_Instance">
+        <h3>A1_AbutmentFooting_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_AbutmentFooting_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentFooting">https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentFooting</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A1_AbutmentFoundation_Instance">
+        <h3>A1_AbutmentFoundation_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_AbutmentFoundation_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentFoundation">https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentFoundation</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A1_AbutmentWall_Instance">
+        <h3>A1_AbutmentWall_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_AbutmentWall_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWall">https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWall</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A1_AbutmentWingWall_Left_Instance">
+        <h3>A1_AbutmentWingWall_Left_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_AbutmentWingWall_Left_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWingWall">https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWingWall</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A1_AbutmentWingWall_Right_Instance">
+        <h3>A1_AbutmentWingWall_Right_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_AbutmentWingWall_Right_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWingWall">https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWingWall</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A1_Abutment_Instance">
+        <h3>A1_Abutment_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_Abutment_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Abutment">https://hyunwoochacha.github.io/SO-ASAS/ontology#Abutment</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A1_PierColumn_Instance">
+        <h3>A1_PierColumn_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_PierColumn_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A1_PierCoping_Instance">
+        <h3>A1_PierCoping_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_PierCoping_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A1_PierFooting_Instance">
+        <h3>A1_PierFooting_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_PierFooting_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A1_PierFoundation_Instance">
+        <h3>A1_PierFoundation_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_PierFoundation_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A1_Pier_Instance">
+        <h3>A1_Pier_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A1_Pier_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier">https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A2_AbutmentFooting_Instance">
+        <h3>A2_AbutmentFooting_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_AbutmentFooting_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentFooting">https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentFooting</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A2_AbutmentFoundation_Instance">
+        <h3>A2_AbutmentFoundation_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_AbutmentFoundation_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentFoundation">https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentFoundation</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A2_AbutmentWall_Instance">
+        <h3>A2_AbutmentWall_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_AbutmentWall_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWall">https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWall</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A2_AbutmentWingWall_Left_Instance">
+        <h3>A2_AbutmentWingWall_Left_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_AbutmentWingWall_Left_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWingWall">https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWingWall</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A2_AbutmentWingWall_Right_Instance">
+        <h3>A2_AbutmentWingWall_Right_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_AbutmentWingWall_Right_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWingWall">https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWingWall</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A2_Abutment_Instance">
+        <h3>A2_Abutment_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_Abutment_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Abutment">https://hyunwoochacha.github.io/SO-ASAS/ontology#Abutment</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A2_PierColumn_Instance">
+        <h3>A2_PierColumn_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_PierColumn_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A2_PierCoping_Instance">
+        <h3>A2_PierCoping_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_PierCoping_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A2_PierFooting_Instance">
+        <h3>A2_PierFooting_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_PierFooting_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A2_PierFoundation_Instance">
+        <h3>A2_PierFoundation_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_PierFoundation_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A2_Pier_Instance">
+        <h3>A2_Pier_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A2_Pier_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier">https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A3_PierColumn_Instance">
+        <h3>A3_PierColumn_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A3_PierColumn_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A3_PierCoping_Instance">
+        <h3>A3_PierCoping_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A3_PierCoping_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A3_PierFooting_Instance">
+        <h3>A3_PierFooting_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A3_PierFooting_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A3_PierFoundation_Instance">
+        <h3>A3_PierFoundation_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A3_PierFoundation_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A3_Pier_Instance">
+        <h3>A3_Pier_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A3_Pier_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier">https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A4_PierColumn_Instance">
+        <h3>A4_PierColumn_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A4_PierColumn_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A4_PierCoping_Instance">
+        <h3>A4_PierCoping_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A4_PierCoping_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A4_PierFooting_Instance">
+        <h3>A4_PierFooting_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A4_PierFooting_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A4_PierFoundation_Instance">
+        <h3>A4_PierFoundation_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A4_PierFoundation_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A4_Pier_Instance">
+        <h3>A4_Pier_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A4_Pier_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier">https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A5_PierColumn_Instance">
+        <h3>A5_PierColumn_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A5_PierColumn_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A5_PierCoping_Instance">
+        <h3>A5_PierCoping_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A5_PierCoping_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A5_PierFooting_Instance">
+        <h3>A5_PierFooting_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A5_PierFooting_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A5_PierFoundation_Instance">
+        <h3>A5_PierFoundation_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A5_PierFoundation_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A5_Pier_Instance">
+        <h3>A5_Pier_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A5_Pier_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier">https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A6_PierColumn_Instance">
+        <h3>A6_PierColumn_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A6_PierColumn_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A6_PierCoping_Instance">
+        <h3>A6_PierCoping_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A6_PierCoping_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A6_PierFooting_Instance">
+        <h3>A6_PierFooting_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A6_PierFooting_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A6_PierFoundation_Instance">
+        <h3>A6_PierFoundation_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A6_PierFoundation_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A6_Pier_Instance">
+        <h3>A6_Pier_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A6_Pier_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier">https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A7_PierColumn_Instance">
+        <h3>A7_PierColumn_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A7_PierColumn_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A7_PierCoping_Instance">
+        <h3>A7_PierCoping_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A7_PierCoping_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A7_PierFooting_Instance">
+        <h3>A7_PierFooting_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A7_PierFooting_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A7_PierFoundation_Instance">
+        <h3>A7_PierFoundation_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A7_PierFoundation_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation">https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="A7_Pier_Instance">
+        <h3>A7_Pier_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#A7_Pier_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier">https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="Bridge_Instance">
+        <h3>Bridge_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#Bridge_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Bridge">https://hyunwoochacha.github.io/SO-ASAS/ontology#Bridge</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="Protectivewall_Left_Instance">
+        <h3>Protectivewall_Left_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#Protectivewall_Left_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Protectivewall">https://hyunwoochacha.github.io/SO-ASAS/ontology#Protectivewall</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="Protectivewall_Right_Instance">
+        <h3>Protectivewall_Right_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#Protectivewall_Right_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Protectivewall">https://hyunwoochacha.github.io/SO-ASAS/ontology#Protectivewall</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="Slab_Instance">
+        <h3>Slab_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#Slab_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#Slab">https://hyunwoochacha.github.io/SO-ASAS/ontology#Slab</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="SubStructure_Instance">
+        <h3>SubStructure_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#SubStructure_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#SubStructure">https://hyunwoochacha.github.io/SO-ASAS/ontology#SubStructure</a><br/>
+            </dd>
+        </table>
+    </div>
+            <div class="entity named_individual" id="SuperStructure_Instance">
+        <h3>SuperStructure_Instance<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://hyunwoochacha.github.io/SO-ASAS/ontology#SuperStructure_Instance
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://hyunwoochacha.github.io/SO-ASAS/ontology#SuperStructure">https://hyunwoochacha.github.io/SO-ASAS/ontology#SuperStructure</a><br/>
+            </dd>
+        </table>
+    </div>
+    </section>
+
+  <section id="namespaces">
+    <h2>Namespaces <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <dl>
+        <dt>default (:)</dt>
+        <dd><code>https://hyunwoochacha.github.io/SO-ASAS/ontology</code></dd>
+        <dt>brick</dt>
+        <dd><code>https://brickschema.org/schema/Brick#</code></dd>
+        <dt>csvw</dt>
+        <dd><code>http://www.w3.org/ns/csvw#</code></dd>
+        <dt>dc</dt>
+        <dd><code>http://purl.org/dc/elements/1.1/</code></dd>
+        <dt>dcam</dt>
+        <dd><code>http://purl.org/dc/dcam/</code></dd>
+        <dt>dcat</dt>
+        <dd><code>http://www.w3.org/ns/dcat#</code></dd>
+        <dt>dcmitype</dt>
+        <dd><code>http://purl.org/dc/dcmitype/</code></dd>
+        <dt>dcterms</dt>
+        <dd><code>http://purl.org/dc/terms/</code></dd>
+        <dt>doap</dt>
+        <dd><code>http://usefulinc.com/ns/doap#</code></dd>
+        <dt>foaf</dt>
+        <dd><code>http://xmlns.com/foaf/0.1/</code></dd>
+        <dt>geo</dt>
+        <dd><code>http://www.opengis.net/ont/geosparql#</code></dd>
+        <dt>odrl</dt>
+        <dd><code>http://www.w3.org/ns/odrl/2/</code></dd>
+        <dt>org</dt>
+        <dd><code>http://www.w3.org/ns/org#</code></dd>
+        <dt>owl</dt>
+        <dd><code>http://www.w3.org/2002/07/owl#</code></dd>
+        <dt>prof</dt>
+        <dd><code>http://www.w3.org/ns/dx/prof/</code></dd>
+        <dt>prov</dt>
+        <dd><code>http://www.w3.org/ns/prov#</code></dd>
+        <dt>qb</dt>
+        <dd><code>http://purl.org/linked-data/cube#</code></dd>
+        <dt>rdf</dt>
+        <dd><code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code></dd>
+        <dt>rdfs</dt>
+        <dd><code>http://www.w3.org/2000/01/rdf-schema#</code></dd>
+        <dt>sdo</dt>
+        <dd><code>https://schema.org/</code></dd>
+        <dt>sh</dt>
+        <dd><code>http://www.w3.org/ns/shacl#</code></dd>
+        <dt>skos</dt>
+        <dd><code>http://www.w3.org/2004/02/skos/core#</code></dd>
+        <dt>sosa</dt>
+        <dd><code>http://www.w3.org/ns/sosa/</code></dd>
+        <dt>ssn</dt>
+        <dd><code>http://www.w3.org/ns/ssn/</code></dd>
+        <dt>time</dt>
+        <dd><code>http://www.w3.org/2006/time#</code></dd>
+        <dt>vann</dt>
+        <dd><code>http://purl.org/vocab/vann/</code></dd>
+        <dt>void</dt>
+        <dd><code>http://rdfs.org/ns/void#</code></dd>
+        <dt>wgs</dt>
+        <dd><code>https://www.w3.org/2003/01/geo/wgs84_pos#</code></dd>
+        <dt>xsd</dt>
+        <dd><code>http://www.w3.org/2001/XMLSchema#</code></dd>
+    </dl>
+</section>
+  <section id="legend">
+      <h2>Legend</h2>
+      <table class="entity">
+          <tr><td><sup class="sup-c" title="Classes">c</sup></td><td>Classes</td></tr>
+          <tr><td><sup class="sup-op" title="Object Properties">op</sup></td><td>Object Properties</td></tr>
+          <tr><td><sup class="sup-fp" title="Functional Properties">fp</sup></td><td>Functional Properties</td></tr>
+          <tr><td><sup class="sup-dp" title="Data Properties">dp</sup></td><td>Data Properties</td></tr>
+          <tr><td><sup class="sup-ap" title="Annotation Properties">ap</sup></td><td>Annotation Properties</td></tr>
+          <tr><td><sup class="sup-p" title="Properties">p</sup></td><td>Properties</td></tr>
+          <tr><td><sup class="sup-ni" title="Named Individuals">ni</sup></td><td>Named Individuals</td></tr>
+      </table>
+  </section>
+</body>
+</html>
