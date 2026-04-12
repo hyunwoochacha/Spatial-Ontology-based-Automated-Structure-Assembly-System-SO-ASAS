@@ -1,0 +1,591 @@
+@prefix bso: <https://hyunwoochacha.github.io/SO-ASAS/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://hyunwoochacha.github.io/SO-ASAS/ontology> .
+
+<https://hyunwoochacha.github.io/SO-ASAS/ontology> rdf:type owl:Ontology ;
+    rdfs:label "Bridge Spatial Ontology (BSO)" ;
+    owl:versionInfo "1.0" ;
+    rdfs:comment "A spatial ontology for automated bridge BIM component assembly using WBS-based spatial relationships." .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#isAttachedTo
+bso:isAttachedTo rdf:type owl:ObjectProperty ;
+                rdfs:domain bso:WBS_Component ;
+                rdfs:range bso:WBS_Component .
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#isAdjacentOf
+bso:isAdjacentOf rdf:type owl:ObjectProperty ;
+                rdfs:domain bso:WBS_Component ;
+                rdfs:range bso:WBS_Component .
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#isPutOn
+bso:isPutOn rdf:type owl:ObjectProperty ;
+                rdfs:domain bso:WBS_Component ;
+                rdfs:range bso:WBS_Component .
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#isPartOf
+bso:isPartOf rdf:type owl:ObjectProperty ;
+            rdfs:domain bso:WBS_Component ;
+            rdfs:range bso:WBS_Component .
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#isBearingWith
+bso:isBearingWith rdf:type owl:ObjectProperty ;
+                 rdfs:domain bso:WBS_Component ;
+                 rdfs:range bso:WBS_Component .
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#width
+bso:width rdf:type owl:DatatypeProperty ;
+          rdfs:domain bso:WBS_Component ;
+          rdfs:range xsd:float .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#length
+bso:length rdf:type owl:DatatypeProperty ;
+          rdfs:domain bso:WBS_Component ;
+          rdfs:range xsd:float .
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#height
+bso:height rdf:type owl:DatatypeProperty ;
+          rdfs:domain bso:WBS_Component ;
+          rdfs:range xsd:float .
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#material
+bso:material rdf:type owl:DatatypeProperty ;
+            rdfs:domain bso:WBS_Component ;
+            rdfs:range xsd:string .
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#name
+bso:name rdf:type owl:DatatypeProperty ;
+        rdfs:domain bso:WBS_Component ;
+        rdfs:range xsd:string .
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#staLocation
+bso:staLocation rdf:type owl:DatatypeProperty ;
+               rdfs:domain bso:WBS_Component ;
+               rdfs:range xsd:string .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#WBS_Component
+bso:WBS_Component rdf:type owl:Class .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#Bridge
+bso:Bridge rdf:type owl:Class ;
+          rdfs:subClassOf bso:WBS_Component .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#SuperStructure
+bso:SuperStructure rdf:type owl:Class ;
+                  rdfs:subClassOf bso:Bridge .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#Slab
+bso:Slab rdf:type owl:Class ;
+        rdfs:subClassOf bso:SuperStructure .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#Protectivewall
+bso:Protectivewall rdf:type owl:Class ;
+            rdfs:subClassOf bso:SuperStructure .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#SubStructure
+bso:SubStructure rdf:type owl:Class ;
+                rdfs:subClassOf bso:Bridge .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#Abutment
+bso:Abutment rdf:type owl:Class ;
+            rdfs:subClassOf bso:SubStructure .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentFooting
+bso:AbutmentFooting rdf:type owl:Class ;
+                   rdfs:subClassOf bso:Abutment .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentFoundation
+bso:AbutmentFoundation rdf:type owl:Class ;
+                   rdfs:subClassOf bso:Abutment .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWall
+bso:AbutmentWall rdf:type owl:Class ;
+                rdfs:subClassOf bso:Abutment .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#AbutmentWingWall
+bso:AbutmentWingWall rdf:type owl:Class ;
+                    rdfs:subClassOf bso:Abutment .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#Pier
+bso:Pier rdf:type owl:Class ;
+        rdfs:subClassOf bso:SubStructure .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#PierColumn
+bso:PierColumn rdf:type owl:Class ;
+              rdfs:subClassOf bso:Pier .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#PierCoping
+bso:PierCoping rdf:type owl:Class ;
+              rdfs:subClassOf bso:Pier .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFooting
+bso:PierFooting rdf:type owl:Class ;
+               rdfs:subClassOf bso:Pier .
+
+
+###  https://hyunwoochacha.github.io/SO-ASAS/ontology#PierFoundation
+bso:PierFoundation rdf:type owl:Class ;
+                  rdfs:subClassOf bso:Pier .
+
+
+#################################################################
+#    Individuals - Bridge (Top Level)
+#################################################################
+
+bso:Bridge_Instance rdf:type owl:NamedIndividual ,
+                            bso:Bridge .
+
+#################################################################
+#    Individuals - SubStructure
+#################################################################
+
+bso:SubStructure_Instance rdf:type owl:NamedIndividual ,
+                                   bso:SubStructure ;
+                          bso:isPartOf bso:Bridge_Instance .
+
+#################################################################
+#    Individuals - Abutment A1 (sta 0+000)
+#################################################################
+
+bso:A1_Abutment_Instance rdf:type owl:NamedIndividual ,
+                                  bso:Abutment ;
+                         bso:isPartOf bso:SubStructure_Instance ;
+                         bso:staLocation "sta 0+000" .
+
+bso:A1_AbutmentFooting_Instance rdf:type owl:NamedIndividual ,
+                                      bso:AbutmentFooting ;
+                             bso:isPartOf bso:A1_Abutment_Instance ;
+                             bso:material "Concrete" ;
+                             bso:name "A1_Abutment_Footing" ;
+                             bso:staLocation "sta 0+000" .
+
+bso:A1_AbutmentFoundation_Instance rdf:type owl:NamedIndividual ,
+                                         bso:AbutmentFoundation ;
+                                bso:isAttachedTo bso:A1_AbutmentFooting_Instance ;
+                                bso:isPartOf bso:A1_Abutment_Instance ;
+                                bso:material "Concrete" ;
+                                bso:name "A1_Abutment_Foundation" ;
+                                bso:staLocation "sta 0+000" .
+
+bso:A1_AbutmentWall_Instance rdf:type owl:NamedIndividual ,
+                                  bso:AbutmentWall ;
+                         bso:isAttachedTo bso:A1_AbutmentFoundation_Instance ;
+                         bso:isPartOf bso:A1_Abutment_Instance ;
+                         bso:isBearingWith bso:Slab_Instance ;
+                         bso:material "Concrete" ;
+                         bso:name "A1_Abutment_Wall" ;
+                         bso:staLocation "sta 0+000" .
+
+bso:A1_AbutmentWingWall_Left_Instance rdf:type owl:NamedIndividual ,
+                                          bso:AbutmentWingWall ;
+                                  bso:isAdjacentOf bso:A1_AbutmentWall_Instance ;
+                                  bso:isAttachedTo bso:A1_AbutmentFoundation_Instance ;
+                                  bso:isPartOf bso:A1_Abutment_Instance ;
+                                  bso:material "Concrete" ;
+                                  bso:name "A1_Abutment_WingWall_Left" ;
+                                  bso:staLocation "sta 0+000" .
+
+bso:A1_AbutmentWingWall_Right_Instance rdf:type owl:NamedIndividual ,
+                                           bso:AbutmentWingWall ;
+                                   bso:isAdjacentOf bso:A1_AbutmentWall_Instance ;
+                                   bso:isAttachedTo bso:A1_AbutmentFoundation_Instance ;
+                                   bso:isPartOf bso:A1_Abutment_Instance ;
+                                   bso:material "Concrete" ;
+                                   bso:name "A1_Abutment_WingWall_Right" ;
+                                   bso:staLocation "sta 0+000" .
+
+#################################################################
+#    Individuals - Pier A1 (sta 0+200)
+#################################################################
+
+bso:A1_Pier_Instance rdf:type owl:NamedIndividual ,
+                              bso:Pier ;
+                     bso:isPartOf bso:SubStructure_Instance ;
+                     bso:staLocation "sta 0+200" .
+
+bso:A1_PierFooting_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierFooting ;
+                       bso:isPartOf bso:A1_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A1_Pier_Footing" ;
+                       bso:staLocation "sta 0+200" .
+
+bso:A1_PierFoundation_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierFoundation ;
+                       bso:isAttachedTo bso:A1_PierFooting_Instance ;
+                       bso:isPartOf bso:A1_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A1_Pier_Foundation" ;
+                       bso:staLocation "sta 0+200" .
+
+bso:A1_PierColumn_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierColumn ;
+                       bso:isAttachedTo bso:A1_PierFoundation_Instance ;
+                       bso:isPartOf bso:A1_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A1_Pier_Column" ;
+                       bso:staLocation "sta 0+200" .
+
+bso:A1_PierCoping_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierCoping ;
+                       bso:isAttachedTo bso:A1_PierColumn_Instance ;
+                       bso:isBearingWith bso:Slab_Instance ;
+                       bso:isPartOf bso:A1_Pier_Instance ;
+                       bso:material "Steel" ;
+                       bso:name "A1_Pier_Coping" ;
+                       bso:staLocation "sta 0+200" .
+
+#################################################################
+#    Individuals - Pier A2 (sta 0+300)
+#################################################################
+
+bso:A2_Pier_Instance rdf:type owl:NamedIndividual ,
+                              bso:Pier ;
+                     bso:isPartOf bso:SubStructure_Instance ;
+                     bso:staLocation "sta 0+300" .
+
+bso:A2_PierFooting_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierFooting ;
+                       bso:isPartOf bso:A2_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A2_Pier_Footing" ;
+                       bso:staLocation "sta 0+300" .
+
+bso:A2_PierFoundation_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierFoundation ;
+                       bso:isAttachedTo bso:A2_PierFooting_Instance ;
+                       bso:isPartOf bso:A2_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A2_Pier_Foundation" ;
+                       bso:staLocation "sta 0+300" .
+
+bso:A2_PierColumn_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierColumn ;
+                       bso:isAttachedTo bso:A2_PierFoundation_Instance ;
+                       bso:isPartOf bso:A2_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A2_Pier_Column" ;
+                       bso:staLocation "sta 0+300" .
+
+bso:A2_PierCoping_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierCoping ;
+                       bso:isAttachedTo bso:A2_PierColumn_Instance ;
+                       bso:isBearingWith bso:Slab_Instance ;
+                       bso:isPartOf bso:A2_Pier_Instance ;
+                       bso:material "Steel" ;
+                       bso:name "A2_Pier_Coping" ;
+                       bso:staLocation "sta 0+300" .
+
+#################################################################
+#    Individuals - Pier A3 (sta 0+400)
+#################################################################
+
+bso:A3_Pier_Instance rdf:type owl:NamedIndividual ,
+                              bso:Pier ;
+                     bso:isPartOf bso:SubStructure_Instance ;
+                     bso:staLocation "sta 0+400" .
+
+bso:A3_PierFooting_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierFooting ;
+                       bso:isPartOf bso:A3_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A3_Pier_Footing" ;
+                       bso:staLocation "sta 0+400" .
+
+bso:A3_PierFoundation_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierFoundation ;
+                       bso:isAttachedTo bso:A3_PierFooting_Instance ;
+                       bso:isPartOf bso:A3_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A3_Pier_Foundation" ;
+                       bso:staLocation "sta 0+400" .
+
+bso:A3_PierColumn_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierColumn ;
+                       bso:isAttachedTo bso:A3_PierFoundation_Instance ;
+                       bso:isPartOf bso:A3_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A3_Pier_Column" ;
+                       bso:staLocation "sta 0+400" .
+
+bso:A3_PierCoping_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierCoping ;
+                       bso:isAttachedTo bso:A3_PierColumn_Instance ;
+                       bso:isBearingWith bso:Slab_Instance ;
+                       bso:isPartOf bso:A3_Pier_Instance ;
+                       bso:material "Steel" ;
+                       bso:name "A3_Pier_Coping" ;
+                       bso:staLocation "sta 0+400" .
+
+#################################################################
+#    Individuals - Pier A4 (sta 0+500)
+#################################################################
+
+bso:A4_Pier_Instance rdf:type owl:NamedIndividual ,
+                              bso:Pier ;
+                     bso:isPartOf bso:SubStructure_Instance ;
+                     bso:staLocation "sta 0+500" .
+
+bso:A4_PierFooting_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierFooting ;
+                       bso:isPartOf bso:A4_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A4_Pier_Footing" ;
+                       bso:staLocation "sta 0+500" .
+
+bso:A4_PierFoundation_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierFoundation ;
+                       bso:isAttachedTo bso:A4_PierFooting_Instance ;
+                       bso:isPartOf bso:A4_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A4_Pier_Foundation" ;
+                       bso:staLocation "sta 0+500" .
+
+bso:A4_PierColumn_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierColumn ;
+                       bso:isAttachedTo bso:A4_PierFoundation_Instance ;
+                       bso:isPartOf bso:A4_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A4_Pier_Column" ;
+                       bso:staLocation "sta 0+500" .
+
+bso:A4_PierCoping_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierCoping ;
+                       bso:isAttachedTo bso:A4_PierColumn_Instance ;
+                       bso:isBearingWith bso:Slab_Instance ;
+                       bso:isPartOf bso:A4_Pier_Instance ;
+                       bso:material "Steel" ;
+                       bso:name "A4_Pier_Coping" ;
+                       bso:staLocation "sta 0+500" .
+
+#################################################################
+#    Individuals - Pier A5 (sta 0+600)
+#################################################################
+
+bso:A5_Pier_Instance rdf:type owl:NamedIndividual ,
+                              bso:Pier ;
+                     bso:isPartOf bso:SubStructure_Instance ;
+                     bso:staLocation "sta 0+600" .
+
+bso:A5_PierFooting_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierFooting ;
+                       bso:isPartOf bso:A5_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A5_Pier_Footing" ;
+                       bso:staLocation "sta 0+600" .
+
+bso:A5_PierFoundation_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierFoundation ;
+                       bso:isAttachedTo bso:A5_PierFooting_Instance ;
+                       bso:isPartOf bso:A5_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A5_Pier_Foundation" ;
+                       bso:staLocation "sta 0+600" .
+
+bso:A5_PierColumn_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierColumn ;
+                       bso:isAttachedTo bso:A5_PierFoundation_Instance ;
+                       bso:isPartOf bso:A5_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A5_Pier_Column" ;
+                       bso:staLocation "sta 0+600" .
+
+bso:A5_PierCoping_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierCoping ;
+                       bso:isAttachedTo bso:A5_PierColumn_Instance ;
+                       bso:isBearingWith bso:Slab_Instance ;
+                       bso:isPartOf bso:A5_Pier_Instance ;
+                       bso:material "Steel" ;
+                       bso:name "A5_Pier_Coping" ;
+                       bso:staLocation "sta 0+600" .
+
+#################################################################
+#    Individuals - Pier A6 (sta 0+700)
+#################################################################
+
+bso:A6_Pier_Instance rdf:type owl:NamedIndividual ,
+                              bso:Pier ;
+                     bso:isPartOf bso:SubStructure_Instance ;
+                     bso:staLocation "sta 0+700" .
+
+bso:A6_PierFooting_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierFooting ;
+                       bso:isPartOf bso:A6_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A6_Pier_Footing" ;
+                       bso:staLocation "sta 0+700" .
+
+bso:A6_PierFoundation_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierFoundation ;
+                       bso:isAttachedTo bso:A6_PierFooting_Instance ;
+                       bso:isPartOf bso:A6_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A6_Pier_Foundation" ;
+                       bso:staLocation "sta 0+700" .
+
+bso:A6_PierColumn_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierColumn ;
+                       bso:isAttachedTo bso:A6_PierFoundation_Instance ;
+                       bso:isPartOf bso:A6_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A6_Pier_Column" ;
+                       bso:staLocation "sta 0+700" .
+
+bso:A6_PierCoping_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierCoping ;
+                       bso:isAttachedTo bso:A6_PierColumn_Instance ;
+                       bso:isBearingWith bso:Slab_Instance ;
+                       bso:isPartOf bso:A6_Pier_Instance ;
+                       bso:material "Steel" ;
+                       bso:name "A6_Pier_Coping" ;
+                       bso:staLocation "sta 0+700" .
+
+#################################################################
+#    Individuals - Pier A7 (sta 0+800)
+#################################################################
+
+bso:A7_Pier_Instance rdf:type owl:NamedIndividual ,
+                              bso:Pier ;
+                     bso:isPartOf bso:SubStructure_Instance ;
+                     bso:staLocation "sta 0+800" .
+
+bso:A7_PierFooting_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierFooting ;
+                       bso:isPartOf bso:A7_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A7_Pier_Footing" ;
+                       bso:staLocation "sta 0+800" .
+
+bso:A7_PierFoundation_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierFoundation ;
+                       bso:isAttachedTo bso:A7_PierFooting_Instance ;
+                       bso:isPartOf bso:A7_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A7_Pier_Foundation" ;
+                       bso:staLocation "sta 0+800" .
+
+bso:A7_PierColumn_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierColumn ;
+                       bso:isAttachedTo bso:A7_PierFoundation_Instance ;
+                       bso:isPartOf bso:A7_Pier_Instance ;
+                       bso:material "Concrete" ;
+                       bso:name "A7_Pier_Column" ;
+                       bso:staLocation "sta 0+800" .
+
+bso:A7_PierCoping_Instance rdf:type owl:NamedIndividual ,
+                                bso:PierCoping ;
+                       bso:isAttachedTo bso:A7_PierColumn_Instance ;
+                       bso:isBearingWith bso:Slab_Instance ;
+                       bso:isPartOf bso:A7_Pier_Instance ;
+                       bso:material "Steel" ;
+                       bso:name "A7_Pier_Coping" ;
+                       bso:staLocation "sta 0+800" .
+
+#################################################################
+#    Individuals - Abutment A2 (sta 0+900)
+#################################################################
+
+bso:A2_Abutment_Instance rdf:type owl:NamedIndividual ,
+                                  bso:Abutment ;
+                         bso:isPartOf bso:SubStructure_Instance ;
+                         bso:staLocation "sta 0+900" .
+
+bso:A2_AbutmentFooting_Instance rdf:type owl:NamedIndividual ,
+                                      bso:AbutmentFooting ;
+                             bso:isPartOf bso:A2_Abutment_Instance ;
+                             bso:material "Concrete" ;
+                             bso:name "A2_Abutment_Footing" ;
+                             bso:staLocation "sta 0+900" .
+
+bso:A2_AbutmentFoundation_Instance rdf:type owl:NamedIndividual ,
+                                         bso:AbutmentFoundation ;
+                                bso:isAttachedTo bso:A2_AbutmentFooting_Instance ;
+                                bso:isPartOf bso:A2_Abutment_Instance ;
+                                bso:material "Concrete" ;
+                                bso:name "A2_Abutment_Foundation" ;
+                                bso:staLocation "sta 0+900" .
+
+bso:A2_AbutmentWall_Instance rdf:type owl:NamedIndividual ,
+                                  bso:AbutmentWall ;
+                         bso:isAttachedTo bso:A2_AbutmentFoundation_Instance ;
+                         bso:isPartOf bso:A2_Abutment_Instance ;
+                         bso:isBearingWith bso:Slab_Instance ;
+                         bso:material "Concrete" ;
+                         bso:name "A2_Abutment_Wall" ;
+                         bso:staLocation "sta 0+900" .
+
+bso:A2_AbutmentWingWall_Left_Instance rdf:type owl:NamedIndividual ,
+                                          bso:AbutmentWingWall ;
+                                  bso:isAdjacentOf bso:A2_AbutmentWall_Instance ;
+                                  bso:isAttachedTo bso:A2_AbutmentFoundation_Instance ;
+                                  bso:isPartOf bso:A2_Abutment_Instance ;
+                                  bso:material "Concrete" ;
+                                  bso:name "A2_Abutment_WingWall_Left" ;
+                                  bso:staLocation "sta 0+900" .
+
+bso:A2_AbutmentWingWall_Right_Instance rdf:type owl:NamedIndividual ,
+                                           bso:AbutmentWingWall ;
+                                   bso:isAdjacentOf bso:A2_AbutmentWall_Instance ;
+                                   bso:isAttachedTo bso:A2_AbutmentFoundation_Instance ;
+                                   bso:isPartOf bso:A2_Abutment_Instance ;
+                                   bso:material "Concrete" ;
+                                   bso:name "A2_Abutment_WingWall_Right" ;
+                                   bso:staLocation "sta 0+900" .
+
+#################################################################
+#    Individuals - SuperStructure
+#################################################################
+
+bso:SuperStructure_Instance rdf:type owl:NamedIndividual ,
+                                     bso:SuperStructure ;
+                            bso:isPartOf bso:Bridge_Instance .
+
+bso:Slab_Instance rdf:type owl:NamedIndividual ,
+                          bso:Slab ;
+                 bso:isPartOf bso:SuperStructure_Instance ;
+                 bso:material "Concrete" ;
+                 bso:name "Slab" .
+
+bso:Protectivewall_Left_Instance rdf:type owl:NamedIndividual ,
+                              bso:Protectivewall ;
+                     bso:isPartOf bso:SuperStructure_Instance ;
+                     bso:isPutOn bso:Slab_Instance ;
+                     bso:material "Concrete" ;
+                     bso:name "ProtectiveWall_Left" .
+
+bso:Protectivewall_Right_Instance rdf:type owl:NamedIndividual ,
+                              bso:Protectivewall ;
+                     bso:isPartOf bso:SuperStructure_Instance ;
+                     bso:isPutOn bso:Slab_Instance ;
+                     bso:material "Concrete" ;
+                     bso:name "ProtectiveWall_Right" .
